@@ -8,13 +8,21 @@
   <link rel="dns-prefetch" href="https://LyQing63.github.io/blog">
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="javascript总章由三部分组成  核心(ECMAScript) 文档对象模型(DOM) 浏览器对象模型(BOM)  核心(ECMScript)由一下基本分组成  语法 类型 语句 关键字 保留字 操作符 对象  文本对象模型(DOM)功能使获取所有的html标签，开始标签或者删除标签，并且可以给标签添加事件(点击、拖动)基于一下接口  DOM 遍历和范围：可以知道页面中所有的标签； DOM">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://lyqing63.github.io/blog/index.html">
+<meta property="og:url" content="https://lyqing63.github.io/blog/2023/03/22/javascript/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="javascript总章由三部分组成  核心(ECMAScript) 文档对象模型(DOM) 浏览器对象模型(BOM)  核心(ECMScript)由一下基本分组成  语法 类型 语句 关键字 保留字 操作符 对象  文本对象模型(DOM)功能使获取所有的html标签，开始标签或者删除标签，并且可以给标签添加事件(点击、拖动)基于一下接口  DOM 遍历和范围：可以知道页面中所有的标签； DOM">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://qgt-document.oss-cn-beijing.aliyuncs.com/P3-4-HTML-CSS/7/3.jpg?x-oss-process=image/resize,w_800/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10">
+<meta property="og:image" content="https://style.youkeda.com/img/course/f4/8/3.jpeg?x-oss-process=image/resize,w_800/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10">
+<meta property="og:image" content="https://style.youkeda.com/img/course/f4/9/1.jpeg?x-oss-process=image/resize,w_800/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10">
+<meta property="article:published_time" content="2023-03-22T04:57:58.242Z">
+<meta property="article:modified_time" content="2022-12-16T08:34:09.979Z">
 <meta property="article:author" content="LyQing63">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qgt-document.oss-cn-beijing.aliyuncs.com/P3-4-HTML-CSS/7/3.jpg?x-oss-process=image/resize,w_800/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,208 +158,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Thymeleaf 布局(Layout)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Thymeleaf-布局-Layout"><a href="#Thymeleaf-布局-Layout" class="headerlink" title="Thymeleaf 布局(Layout)"></a>Thymeleaf 布局(Layout)</h1><hr>
-<blockquote>
-<p>使用<code>th:include + th:replace</code>方案完成开发</p>
-</blockquote>
-<ul>
-<li><p>在<code>Layout.html</code>中</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;/&gt;</span><br><span class="line">    &lt;title&gt;布局&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .header &#123;background-color: #f5f5f5;padding: 20px;&#125;</span><br><span class="line">        .header a &#123;padding: 0 20px;&#125;</span><br><span class="line">        .container &#123;padding: 20px;margin:20px auto;&#125;</span><br><span class="line">        .footer &#123;height: 40px;background-color: #f5f5f5;border-top: 1px solid #ddd;padding: 20px;&#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;header class=&quot;header&quot;&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;a href=&quot;/book/list.html&quot;&gt;图书管理&lt;/a&gt;</span><br><span class="line">        &lt;a href=&quot;/user/list.html&quot;&gt;用户管理&lt;/a&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/header&gt;</span><br><span class="line">&lt;div class=&quot;container&quot; th:include=&quot;::content&quot;&gt;页面正文内容&lt;/div&gt;</span><br><span class="line">&lt;footer class=&quot;footer&quot;&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;p style=&quot;float: left&quot;&gt;&amp;copy; youkeda.com 2017&lt;/p&gt;</span><br><span class="line">        &lt;p style=&quot;float: right&quot;&gt;</span><br><span class="line">            Powered by 优课达</span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/footer&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p> th:include=”::content” : <code>::content</code>指的是选择器，这个选择器是加载页面<code>th:fragment</code>的值</p>
-</li>
-<li><p>user/list.html</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://www.thymeleaf.org&quot;</span><br><span class="line">      th:replace=&quot;layout&quot;&gt;</span><br><span class="line">&lt;div th:fragment=&quot;content&quot;&gt;</span><br><span class="line">    &lt;h2&gt;用户列表&lt;/h2&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;a href=&quot;/user/add.html&quot;&gt;添加用户&lt;/a&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;table&gt;</span><br><span class="line">        &lt;thead&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;th&gt;</span><br><span class="line">                用户名称</span><br><span class="line">            &lt;/th&gt;</span><br><span class="line">            &lt;th&gt;</span><br><span class="line">                用户年龄</span><br><span class="line">            &lt;/th&gt;</span><br><span class="line">            &lt;th&gt;</span><br><span class="line">                用户邮箱</span><br><span class="line">            &lt;/th&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">        &lt;/thead&gt;</span><br><span class="line">        &lt;tbody&gt;</span><br><span class="line">        &lt;tr th:each=&quot;user : $&#123;users&#125;&quot;&gt;</span><br><span class="line">            &lt;td th:text=&quot;$&#123;user.name&#125;&quot;&gt;&lt;/td&gt;</span><br><span class="line">            &lt;td th:text=&quot;$&#123;user.age&#125;&quot;&gt;&lt;/td&gt;</span><br><span class="line">            &lt;td th:text=&quot;$&#123;user.email&#125;&quot;&gt;&lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">        &lt;/tbody&gt;</span><br><span class="line">    &lt;/table&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li><p>th:replace=”layout” : 指定布局名称，layout指”templates/layout.html”</p>
-</li>
-<li><p>th:fragment=”content” : 指定选择器</p>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/blog/2023/03/22/Thymeleaf%20%E5%B8%83%E5%B1%80(Layout)/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-README" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="learning"><a href="#learning" class="headerlink" title="learning"></a>learning</h1><p>学习java的笔记</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/blog/2023/03/22/README/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-MongoDB" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h1><blockquote>
-<p>适用于Linux服务端</p>
-</blockquote>
-<h2 id="服务器使用"><a href="#服务器使用" class="headerlink" title="服务器使用"></a>服务器使用</h2><ol>
-<li>登录服务器</li>
-</ol>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@xxx.xxx.xxx.xxx</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>“@”后为服务器公网地址</p>
-</blockquote>
-<h2 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h2><ol>
-<li>查看Docker版本号</li>
-</ol>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker version</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>若已安装<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">Client: Docker Engine - Community</span><br><span class="line"> Version:           20.10.6</span><br><span class="line"> API version:       1.41</span><br><span class="line"> Go version:        go1.13.15</span><br><span class="line"> Git commit:        370c289</span><br><span class="line"> Built:             Fri Apr  9 22:46:45 2021</span><br><span class="line"> OS/Arch:           linux/amd64</span><br><span class="line"> Context:           default</span><br><span class="line"> Experimental:      true</span><br><span class="line"></span><br><span class="line">Server:</span><br><span class="line"> Engine:</span><br><span class="line">  Version:          20.10.2</span><br><span class="line">  API version:      1.41 (minimum version 1.12)</span><br><span class="line">  Go version:       go1.13.8</span><br><span class="line">  Git commit:       20.10.2-0ubuntu1~20.04.2</span><br><span class="line">  Built:            Mon Mar 29 19:10:09 2021</span><br><span class="line">  OS/Arch:          linux/amd64</span><br><span class="line">  Experimental:     false</span><br><span class="line"> containerd:</span><br><span class="line">  Version:          1.5.2-0ubuntu1~20.04.2</span><br><span class="line">  GitCommit:        </span><br><span class="line"> runc:</span><br><span class="line">  Version:          1.0.0~rc95-0ubuntu1~20.04.1</span><br><span class="line">  GitCommit:        </span><br><span class="line"> docker-init:</span><br><span class="line">  Version:          0.19.0</span><br><span class="line">  GitCommit:       </span><br></pre></td></tr></table></figure></li>
-</ul>
-<ol start="2">
-<li><p>安装Docker</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun</span><br></pre></td></tr></table></figure></li>
-<li><p>安装MongoDB</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull mongo:latest //下载镜像源</span><br><span class="line">sudo docker images//查看镜像源</span><br><span class="line">sudo docker run -itd --name mongo -p 27017:27017 mongo --auth//启动</span><br><span class="line">sudo docker ps//检查是否启动</span><br></pre></td></tr></table></figure></li>
-<li><p>创建 admin 账户</p>
-<ol>
-<li>登录数据库<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker exec -it mongo mongosh admin</span><br></pre></td></tr></table></figure></li>
-<li>创建管理员账户<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.createUser(&#123; user:&#x27;admin&#x27;, pwd:&#x27;123456&#x27;, roles:[&#123; role:&#x27;root&#x27;, db:&#x27;admin&#x27; &#125;]&#125;);</span><br></pre></td></tr></table></figure></li>
-<li>认证管理员账户<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.auth(&#x27;admin&#x27;, &#x27;123456&#x27;)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">5. 创建数据库</span><br><span class="line">1. 切换数据库</span><br></pre></td></tr></table></figure>
-<p>use practice//数据库名</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; 若数据库储存在则打开，若不存在则创建后打开</span><br><span class="line">2. 创建读写用户</span><br></pre></td></tr></table></figure>
-db.createUser({ user:’xxxx’,pwd:’xxxxxx’,roles:[{ role:’root’, db: ‘admin’},{ role:’dbAdmin’, db: ‘practice’}]});<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3. 认证数据库</span><br></pre></td></tr></table></figure>
-db.auth(‘xx’, ‘xxx’)<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">	&gt; 再次登录数据库后只需要执行 1 与 3 两步即可</span><br><span class="line">6. 退出登录</span><br></pre></td></tr></table></figure>
-exit<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">7. Spring 项目中的配置</span><br></pre></td></tr></table></figure>
-<h2 id="购买的云服务器的公网-IP"><a href="#购买的云服务器的公网-IP" class="headerlink" title="购买的云服务器的公网 IP"></a>购买的云服务器的公网 IP</h2>spring.data.mongodb.host=<h2 id="MongoDB-服务的端口号"><a href="#MongoDB-服务的端口号" class="headerlink" title="MongoDB 服务的端口号"></a>MongoDB 服务的端口号</h2>spring.data.mongodb.port=27017<h2 id="创建的数据库及用户名和密码"><a href="#创建的数据库及用户名和密码" class="headerlink" title="创建的数据库及用户名和密码"></a>创建的数据库及用户名和密码</h2>spring.data.mongodb.database=<br>spring.data.mongodb.username=<br>spring.data.mongodb.password=<br>```</li>
-</ol>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/blog/2023/03/22/MongoDB/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-javascript" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-javascript" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
@@ -830,6 +637,27 @@ exit<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span
       
 
       
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
     </div>
     <div class="article-info article-info-index">
       
@@ -837,16 +665,84 @@ exit<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/blog/2023/03/22/javascript/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lyqing63.github.io/blog/2023/03/22/javascript/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/blog/2023/03/22/MongoDB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2023/03/22/Spring/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spring</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -866,70 +762,14 @@ exit<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span
 
 
 
-
   
-    <article id="post-Spring" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2023/03/22/Spring/">Spring</a>
-    </h1>
   
 
-        
-        <a href="/blog/2023/03/22/Spring/" class="archive-article-date">
-  	<time datetime="2023-03-22T04:55:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/blog/2023/03/22/Spring/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
+  
 
   
+
   
 
 
@@ -952,8 +792,8 @@ exit<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
