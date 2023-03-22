@@ -152,119 +152,23 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Thymeleaf 布局(Layout)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Thymeleaf-布局-Layout"><a href="#Thymeleaf-布局-Layout" class="headerlink" title="Thymeleaf 布局(Layout)"></a>Thymeleaf 布局(Layout)</h1><hr>
-<blockquote>
-<p>使用<code>th:include + th:replace</code>方案完成开发</p>
-</blockquote>
-<ul>
-<li><p>在<code>Layout.html</code>中</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;/&gt;</span><br><span class="line">    &lt;title&gt;布局&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .header &#123;background-color: #f5f5f5;padding: 20px;&#125;</span><br><span class="line">        .header a &#123;padding: 0 20px;&#125;</span><br><span class="line">        .container &#123;padding: 20px;margin:20px auto;&#125;</span><br><span class="line">        .footer &#123;height: 40px;background-color: #f5f5f5;border-top: 1px solid #ddd;padding: 20px;&#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;header class=&quot;header&quot;&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;a href=&quot;/book/list.html&quot;&gt;图书管理&lt;/a&gt;</span><br><span class="line">        &lt;a href=&quot;/user/list.html&quot;&gt;用户管理&lt;/a&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/header&gt;</span><br><span class="line">&lt;div class=&quot;container&quot; th:include=&quot;::content&quot;&gt;页面正文内容&lt;/div&gt;</span><br><span class="line">&lt;footer class=&quot;footer&quot;&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;p style=&quot;float: left&quot;&gt;&amp;copy; youkeda.com 2017&lt;/p&gt;</span><br><span class="line">        &lt;p style=&quot;float: right&quot;&gt;</span><br><span class="line">            Powered by 优课达</span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/footer&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p> th:include=”::content” : <code>::content</code>指的是选择器，这个选择器是加载页面<code>th:fragment</code>的值</p>
-</li>
-<li><p>user/list.html</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://www.thymeleaf.org&quot;</span><br><span class="line">      th:replace=&quot;layout&quot;&gt;</span><br><span class="line">&lt;div th:fragment=&quot;content&quot;&gt;</span><br><span class="line">    &lt;h2&gt;用户列表&lt;/h2&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;a href=&quot;/user/add.html&quot;&gt;添加用户&lt;/a&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;table&gt;</span><br><span class="line">        &lt;thead&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;th&gt;</span><br><span class="line">                用户名称</span><br><span class="line">            &lt;/th&gt;</span><br><span class="line">            &lt;th&gt;</span><br><span class="line">                用户年龄</span><br><span class="line">            &lt;/th&gt;</span><br><span class="line">            &lt;th&gt;</span><br><span class="line">                用户邮箱</span><br><span class="line">            &lt;/th&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">        &lt;/thead&gt;</span><br><span class="line">        &lt;tbody&gt;</span><br><span class="line">        &lt;tr th:each=&quot;user : $&#123;users&#125;&quot;&gt;</span><br><span class="line">            &lt;td th:text=&quot;$&#123;user.name&#125;&quot;&gt;&lt;/td&gt;</span><br><span class="line">            &lt;td th:text=&quot;$&#123;user.age&#125;&quot;&gt;&lt;/td&gt;</span><br><span class="line">            &lt;td th:text=&quot;$&#123;user.email&#125;&quot;&gt;&lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">        &lt;/tbody&gt;</span><br><span class="line">    &lt;/table&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li><p>th:replace=”layout” : 指定布局名称，layout指”templates/layout.html”</p>
-</li>
-<li><p>th:fragment=”content” : 指定选择器</p>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/blog/2023/03/22/Thymeleaf%20%E5%B8%83%E5%B1%80(Layout)/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-README" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="learning"><a href="#learning" class="headerlink" title="learning"></a>learning</h1><p>学习java的笔记</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/blog/2023/03/22/README/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-MongoDB" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2023/03/22/MongoDB/">MongoDB</a>
+    </h1>
+  
+
+        
+        <a href="/blog/2023/03/22/MongoDB/" class="archive-article-date">
+  	<time datetime="2023-03-22T05:04:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-22</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
@@ -351,8 +255,101 @@ exit<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span
 
 
   
+    <article id="post-Thymeleaf 布局(Layout)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2023/03/22/Thymeleaf%20%E5%B8%83%E5%B1%80(Layout)/">Thymeleaf</a>
+    </h1>
+  
+
+        
+        <a href="/blog/2023/03/22/Thymeleaf%20%E5%B8%83%E5%B1%80(Layout)/" class="archive-article-date">
+  	<time datetime="2023-03-22T05:04:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Thymeleaf-布局-Layout"><a href="#Thymeleaf-布局-Layout" class="headerlink" title="Thymeleaf 布局(Layout)"></a>Thymeleaf 布局(Layout)</h1><hr>
+<blockquote>
+<p>使用<code>th:include + th:replace</code>方案完成开发</p>
+</blockquote>
+<ul>
+<li><p>在<code>Layout.html</code>中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;/&gt;</span><br><span class="line">    &lt;title&gt;布局&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .header &#123;background-color: #f5f5f5;padding: 20px;&#125;</span><br><span class="line">        .header a &#123;padding: 0 20px;&#125;</span><br><span class="line">        .container &#123;padding: 20px;margin:20px auto;&#125;</span><br><span class="line">        .footer &#123;height: 40px;background-color: #f5f5f5;border-top: 1px solid #ddd;padding: 20px;&#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;header class=&quot;header&quot;&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;a href=&quot;/book/list.html&quot;&gt;图书管理&lt;/a&gt;</span><br><span class="line">        &lt;a href=&quot;/user/list.html&quot;&gt;用户管理&lt;/a&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/header&gt;</span><br><span class="line">&lt;div class=&quot;container&quot; th:include=&quot;::content&quot;&gt;页面正文内容&lt;/div&gt;</span><br><span class="line">&lt;footer class=&quot;footer&quot;&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;p style=&quot;float: left&quot;&gt;&amp;copy; youkeda.com 2017&lt;/p&gt;</span><br><span class="line">        &lt;p style=&quot;float: right&quot;&gt;</span><br><span class="line">            Powered by 优课达</span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/footer&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p> th:include=”::content” : <code>::content</code>指的是选择器，这个选择器是加载页面<code>th:fragment</code>的值</p>
+</li>
+<li><p>user/list.html</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://www.thymeleaf.org&quot;</span><br><span class="line">      th:replace=&quot;layout&quot;&gt;</span><br><span class="line">&lt;div th:fragment=&quot;content&quot;&gt;</span><br><span class="line">    &lt;h2&gt;用户列表&lt;/h2&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;a href=&quot;/user/add.html&quot;&gt;添加用户&lt;/a&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;table&gt;</span><br><span class="line">        &lt;thead&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;th&gt;</span><br><span class="line">                用户名称</span><br><span class="line">            &lt;/th&gt;</span><br><span class="line">            &lt;th&gt;</span><br><span class="line">                用户年龄</span><br><span class="line">            &lt;/th&gt;</span><br><span class="line">            &lt;th&gt;</span><br><span class="line">                用户邮箱</span><br><span class="line">            &lt;/th&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">        &lt;/thead&gt;</span><br><span class="line">        &lt;tbody&gt;</span><br><span class="line">        &lt;tr th:each=&quot;user : $&#123;users&#125;&quot;&gt;</span><br><span class="line">            &lt;td th:text=&quot;$&#123;user.name&#125;&quot;&gt;&lt;/td&gt;</span><br><span class="line">            &lt;td th:text=&quot;$&#123;user.age&#125;&quot;&gt;&lt;/td&gt;</span><br><span class="line">            &lt;td th:text=&quot;$&#123;user.email&#125;&quot;&gt;&lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">        &lt;/tbody&gt;</span><br><span class="line">    &lt;/table&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>th:replace=”layout” : 指定布局名称，layout指”templates/layout.html”</p>
+</li>
+<li><p>th:fragment=”content” : 指定选择器</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/blog/2023/03/22/Thymeleaf%20%E5%B8%83%E5%B1%80(Layout)/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-javascript" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2023/03/22/javascript/">Javascript</a>
+    </h1>
+  
+
+        
+        <a href="/blog/2023/03/22/javascript/" class="archive-article-date">
+  	<time datetime="2023-03-22T05:04:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-22</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
@@ -839,6 +836,687 @@ exit<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span
       
         <p class="article-more-link">
           <a class="article-more-a" href="/blog/2023/03/22/javascript/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-前端" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2023/03/22/%E5%89%8D%E7%AB%AF/">前端</a>
+    </h1>
+  
+
+        
+        <a href="/blog/2023/03/22/%E5%89%8D%E7%AB%AF/" class="archive-article-date">
+  	<time datetime="2023-03-22T05:04:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><p><code> &lt;!DOCTYPE html</code></p>
+<ul>
+<li>指示web用哪个HTML编译</li>
+<li>必须是HTML文档的第一行，在<html>前</li>
+<li>对大小写不敏感</li>
+<li>没有结束标签</li>
+</ul>
+<h4 id="lt-html-lang-quot-en-quot-gt-lt-html-gt"><a href="#lt-html-lang-quot-en-quot-gt-lt-html-gt" class="headerlink" title="&lt;html lang=&quot;en&quot;&gt;....&lt;/html&gt;"></a><code>&lt;html lang=&quot;en&quot;&gt;....&lt;/html&gt;</code></h4><ul>
+<li>告知这是HTML文档</li>
+<li>限定文档开始与结束</li>
+<li>lang属性(语言属性):当搜索引擎或者浏览器拿到语言属性后，有可能做依然写针对指定语言的辅助操作，’en’表示英文</li>
+</ul>
+<h4 id="标签属性"><a href="#标签属性" class="headerlink" title="标签属性"></a>标签属性</h4><ul>
+<li>可以有0个或多个，要用空格隔开</li>
+<li>以 key = “value”的形式出现</li>
+</ul>
+<h4 id="文档头部-lt-head-gt-lt-head-gt"><a href="#文档头部-lt-head-gt-lt-head-gt" class="headerlink" title="文档头部&lt;head&gt;...&lt;/head&gt;"></a>文档头部<code>&lt;head&gt;...&lt;/head&gt;</code></h4><ul>
+<li>定义文档头部</li>
+<li>头部中的<title>…</title>在网页上体现为标题，且一个<head>中只能含有一个<title></li>
+</ul>
+<h4 id="文档的主体-lt-body-gt-lt-body-gt"><a href="#文档的主体-lt-body-gt-lt-body-gt" class="headerlink" title="文档的主体&lt;body&gt;...&lt;/body&gt;"></a>文档的主体<code>&lt;body&gt;...&lt;/body&gt;</code></h4><ul>
+<li>包含文档所有的内容</li>
+</ul>
+<h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><p><code>&lt;!--......---&gt;</code></p>
+<blockquote>
+<p>利用MDN查找html 以及 css 内容</p>
+</blockquote>
+<h3 id="块状与内联标签"><a href="#块状与内联标签" class="headerlink" title="块状与内联标签"></a>块状与内联标签</h3><ul>
+<li>块状标签会单独成段</li>
+<li>内联标签被嵌套在快状标签</li>
+</ul>
+<h4 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h4><p><code>&lt;h1&gt;&lt;/h1&gt;</code></p>
+<ul>
+<li>块状标签</li>
+<li>按照1~6分级，逐渐变小</li>
+</ul>
+<h4 id="文本标签"><a href="#文本标签" class="headerlink" title="文本标签"></a>文本标签</h4><p><code>&lt;p&gt;&lt;/p&gt;</code></p>
+<ul>
+<li>块状标签</li>
+<li>可以添加内联标签如 : <strong></strong>(强调加粗)   <span></span>(添加文字样式)</li>
+</ul>
+<h4 id="图片标签"><a href="#图片标签" class="headerlink" title="图片标签"></a>图片标签</h4><p><strong>内联</strong><br><code>&lt;img src=&quot;url&quot; alt=&quot;&quot;&gt;&lt;/img&gt;</code></p>
+<h4 id="链接标签"><a href="#链接标签" class="headerlink" title="链接标签"></a>链接标签</h4><p><code>&lt;a href=&quot;url&quot; title=&quot;&quot; target=&quot;&quot;&gt;&lt;/a&gt;</code><br><strong>内联</strong></p>
+<ul>
+<li>href:目标链接</li>
+<li>title:说明链接信息</li>
+<li>target:打开链接方式 <ul>
+<li>_self:当前页面</li>
+<li>_blank:新页面</li>
+</ul>
+</li>
+</ul>
+<h4 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h4><p><strong>块状</strong></p>
+<figure class="highlight plaintext"><figcaption><span>---->列表</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">```&lt;ul&gt;&lt;/ul&gt;``` -----&gt;无序标签（通常包裹&lt;li&gt;）</span><br><span class="line">```&lt;ol&gt;&lt;/ol&gt;``` ------&gt;有序标签（通常包裹&lt;li&gt;）</span><br><span class="line"></span><br><span class="line">&gt; 去除默认的点:list-style: none;</span><br><span class="line"></span><br><span class="line">#### form标签</span><br><span class="line">**块状**</span><br><span class="line">Attribute(属性):</span><br><span class="line">* action:表单数据提交地址</span><br><span class="line">* method:发送信息方式 POST/GET</span><br><span class="line"></span><br><span class="line">***设置文本框***</span><br><span class="line">```&lt;input type=&quot;text&quot; /&gt;```</span><br><span class="line">* 提示输入:placeholde=&quot;&quot;</span><br><span class="line">* 文本框名字:name=&quot;&quot;</span><br><span class="line">* 文本框值:value=&quot;&quot;</span><br><span class="line">* 设置为不可修改:readonly(不可读)/disabled(禁用)</span><br><span class="line">* outline:none 将输入时自带的黑色边框去除</span><br><span class="line">![img1](https://img-blog.csdnimg.cn/20210126114834110.png)</span><br><span class="line">![img2](https://img-blog.csdnimg.cn/20210126114935197.png)</span><br><span class="line">#### 多行文本框</span><br><span class="line">```&lt;textarea&gt;&lt;/textarea&gt;```</span><br><span class="line">Attribute(属性):</span><br><span class="line"></span><br><span class="line">* 提示输入:placeholde=&quot;&quot;</span><br><span class="line">* 文本框名字:name=&quot;&quot;</span><br><span class="line">* 文本框值:value=&quot;&quot;</span><br><span class="line">* 行/高:rows(行数)/cols(文本域可视宽度)</span><br><span class="line"></span><br><span class="line">##### 密码输入框</span><br><span class="line">```&lt;input type=&quot;password&quot; /&gt;```</span><br><span class="line"></span><br><span class="line">#### 单选框和复选框</span><br><span class="line">**单选**:```&lt;input type=&quot;radio&quot; /&gt;text```</span><br><span class="line">		* 扩大点选范围```&lt;label&gt; &lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;male&quot; /&gt;男 &lt;/label&gt;```/```&lt;input id=&quot;male&quot; type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;male&quot; /&gt;</span><br><span class="line">&lt;label for=&quot;male&quot;&gt;男&lt;/label&gt;```</span><br><span class="line">**复选**:```&lt;input type=&quot;checkbox&quot; /&gt;text```</span><br><span class="line"></span><br><span class="line">#### 选项菜单</span><br><span class="line">用&lt;select&gt;包裹&lt;option&gt;</span><br><span class="line">```html</span><br><span class="line">&lt;select name=&quot;career&quot; multiple(多选)&gt;</span><br><span class="line">  &lt;option value=&quot;default&quot;&gt;请选择职业&lt;/option&gt;</span><br><span class="line">  &lt;option value=&quot;staff&quot;&gt;公司职员&lt;/option&gt;</span><br><span class="line">  &lt;option value=&quot;freelancer&quot;&gt;自由职业者&lt;/option&gt;</span><br><span class="line">  &lt;option value=&quot;student&quot;&gt;学生&lt;/option&gt;</span><br><span class="line">  &lt;option value=&quot;other&quot;&gt;其他&lt;/option&gt;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="按钮"><a href="#按钮" class="headerlink" title="按钮"></a>按钮</h4><p><code>&lt;button&gt;注册(可以为图片&lt;img&gt;)&lt;/button&gt;</code><br>Attribute(属性):</p>
+<ul>
+<li>submit:提交数据 <code>&lt;button type=&quot;submit&quot;&gt;注册&lt;/button&gt;</code></li>
+</ul>
+<h4 id="多种数字输入"><a href="#多种数字输入" class="headerlink" title="多种数字输入"></a>多种数字输入</h4><p><code>&lt;number&gt;</code></p>
+<h3 id="style"><a href="#style" class="headerlink" title="style"></a>style</h3><blockquote>
+<p>用 ; 隔开</p>
+<p>px为像素</p>
+</blockquote>
+<ul>
+<li>font-size: ;  字体大小</li>
+<li>font-weight; :  加粗</li>
+<li>color: ;  颜色</li>
+<li>text-align: ; 字对齐</li>
+<li>line-height: ; 行间距</li>
+<li>letter-spacing: ; 字间距</li>
+</ul>
+<hr>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><ul>
+<li>将相同的标签样式写在{}内<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#ffffff</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>在html(head)中用link标签引入css文件<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">href</span>=<span class="string">&quot;index.css&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>绝对路径与相对路径<ul>
+<li>绝对路径:<code>&lt;img src=&quot;E:\book\网页布局\bg.jpg&quot; /&gt;</code> (完整的文件路径)</li>
+<li>相对路径:<code>&lt;link rel=&quot;stylesheet&quot; href=&quot;./index.css&quot;&gt;</code>(相同文件夹下) <code>&lt;link rel=&quot;stylesheet&quot; href=&quot;../index.css&quot;&gt;</code>(上一文件夹)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>注释用/* */</li>
+</ul>
+<h3 id="选择器-如果是内部样式就要写在-lt-style-gt-lt-style-gt-内"><a href="#选择器-如果是内部样式就要写在-lt-style-gt-lt-style-gt-内" class="headerlink" title="选择器 (如果是内部样式就要写在&lt;style&gt;&lt;/style&gt;内)"></a>选择器 (如果是内部样式就要写在<code>&lt;style&gt;&lt;/style&gt;</code>内)</h3><ul>
+<li><h4 id="标签选择器-会覆盖前一个选择器内容"><a href="#标签选择器-会覆盖前一个选择器内容" class="headerlink" title="标签选择器(会覆盖前一个选择器内容)"></a>标签选择器(会覆盖前一个选择器内容)</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">28px</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#4a5252</span>;		</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><h4 id="类选择器"><a href="#类选择器" class="headerlink" title="类选择器"></a>类选择器</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="selector-class">.article</span> </span><br><span class="line"> &#123;</span><br><span class="line">	<span class="attribute">color</span>: red;</span><br><span class="line">	<span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><h4 id="id-选择器"><a href="#id-选择器" class="headerlink" title="id 选择器"></a>id 选择器</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#p-item</span> </span><br><span class="line">&#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">24px</span>;</span><br><span class="line">  <span class="attribute">font-weight</span>: <span class="number">400</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><h4 id="后代选择器"><a href="#后代选择器" class="headerlink" title="后代选择器"></a>后代选择器</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 选择id名为password的标签内部所有类名为box的元素内部的所有p标签 */</span></span><br><span class="line"><span class="selector-id">#password</span> <span class="selector-class">.box</span> <span class="selector-tag">p</span>&#123;&#125;</span><br><span class="line"><span class="comment">/* 选择所有p标签内部的所有span标签 */</span></span><br><span class="line"><span class="selector-tag">p</span> <span class="selector-tag">span</span>&#123;&#125;</span><br><span class="line"><span class="comment">/* 选择所有p标签内部的所有类名为spanItem的标签 */</span></span><br><span class="line"><span class="selector-tag">p</span> <span class="selector-class">.spanItem</span>&#123;&#125;</span><br></pre></td></tr></table></figure></li>
+<li><h4 id="交集选择器"><a href="#交集选择器" class="headerlink" title="交集选择器"></a>交集选择器</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//<span class="selector-tag">a</span>标签内,类名为special的标签</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-class">.special</span>&#123;&#125;</span><br></pre></td></tr></table></figure></li>
+<li><h4 id="子选择器"><a href="#子选择器" class="headerlink" title="子选择器"></a>子选择器</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">span</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">color</span>: black;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span> <span class="selector-tag">span</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">color</span>: orangered;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><h4 id="并集选择器"><a href="#并集选择器" class="headerlink" title="并集选择器"></a>并集选择器</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>,<span class="selector-tag">p</span>,<span class="selector-tag">h3</span>,<span class="selector-class">.phone</span>&#123;&#125;</span><br></pre></td></tr></table></figure></li>
+<li><h4 id="优先级-id-选择器-gt-类选择器-gt-标签选择器-属性的覆盖性-属性的继承性-优先级计算"><a href="#优先级-id-选择器-gt-类选择器-gt-标签选择器-属性的覆盖性-属性的继承性-优先级计算" class="headerlink" title="优先级    id 选择器&gt;类选择器&gt;标签选择器    * 属性的覆盖性    * 属性的继承性    * 优先级计算"></a>优先级    <strong>id 选择器&gt;类选择器&gt;标签选择器</strong>    * 属性的覆盖性    * 属性的继承性    * 优先级计算</h4><pre><code>  *    按权计算  id 选择器(100) ;类选择器 (10) ;标签选择器 (1)
+</code></pre>
+<h3 id="盒模型–content"><a href="#盒模型–content" class="headerlink" title="盒模型–content"></a>盒模型–content</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* div默认没有高度，宽度与父标签一样</span><br><span class="line">* 用width与height设置宽度与高度(px为单位)</span><br><span class="line">* background-color:设置背景色</span><br><span class="line">* 可以设置百分比尺寸(相对于父标签)</span><br><span class="line">*	#### 内边距--padding</span><br><span class="line">	* padding 的简写顺序(top,right,bottom,left)</span><br><span class="line">		* 若为上下一样，左右一样:```div&#123; padding: 20px 30px &#125;```</span><br><span class="line">		* 若为上下一样，左右不一样:都要写</span><br><span class="line">		* 若上下不一样，左右一样:```div&#123; padding: 30px 10px 20px; &#125;```</span><br><span class="line">	* box-sizing:规定计算袁术的总宽高的方式</span><br><span class="line">		* content-box : width = 内容宽度 ， height = 内容高度</span><br><span class="line">		* border-box : width = border + padding + 内容的宽度, height = border + padding + 内容的高度 </span><br><span class="line"></span><br><span class="line">### 盒模型--border</span><br><span class="line">* 设置边框线:border-width ; border-color ; border-style(solid,dashed)(简写```border: 2px solid blue; &#125;```)</span><br><span class="line">* 分别设置边框</span><br><span class="line">```css</span><br><span class="line">.box &#123;</span><br><span class="line">  /*设置顶部border*/</span><br><span class="line">  border-top-color: blue;</span><br><span class="line">  border-top-style: solid;</span><br><span class="line">  border-top-width: 2px;</span><br><span class="line">  /*那么接下来，left，right，bottom是类似的，这里忽略不写*/</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>无边框<br>  <code>border-bottom: none;</code></li>
+<li>圆角<figure class="highlight plaintext"><figcaption><span>12px;```(看不到不代表不存在)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">	* 分开设置</span><br><span class="line">```css</span><br><span class="line">.box &#123;</span><br><span class="line">  width: 200px;</span><br><span class="line">  height: 200px;</span><br><span class="line">  background-color: violet;</span><br><span class="line">  border-top-left-radius: 5px;</span><br><span class="line">  border-top-right-radius: 10px;</span><br><span class="line">  border-bottom-left-radius: 20px;</span><br><span class="line">  border-bottom-right-radius: 15px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>阴影<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#c4c4c4</span>;</span><br><span class="line">  <span class="comment">/* x偏移量 | y偏移量 | 阴影模糊半径 | 阴影扩散半径 | 阴影颜色 */</span></span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">2px</span> <span class="number">2px</span> <span class="number">2px</span> <span class="number">1px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.2</span>);</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">15px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>display:inline-block:让块级元素在同一行显示，行内元素设置后课设置宽高</li>
+</ul>
+<h3 id="盒模型–margin"><a href="#盒模型–margin" class="headerlink" title="盒模型–margin"></a>盒模型–margin</h3><p>外边距</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="comment">/*总写*/</span></span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="comment">/*分开写*/</span></span><br><span class="line">    <span class="attribute">margin-top</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">margin-bottom</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>推荐写用下边距控制距离</p>
+</blockquote>
+<ul>
+<li>使子盒在父盒中居中<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.father</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">400px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ccc</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.son</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">margin</span>:<span class="number">0</span> auto; //水平居中</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ccc</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="display-block-none"><a href="#display-block-none" class="headerlink" title="display:block/none"></a>display:block/none</h3></li>
+<li>块元素才可以调节宽高</li>
+<li>行内元素与块元素用display 转换(inline:行内元素,block:块元素)</li>
+<li>display:none 表示消失<blockquote>
+<p>去除盒元素同行时空格问题<br>1.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 将<span class="selector-tag">div</span>标签写在一行 --&gt;</span><br><span class="line"></span><br><span class="line">&lt;<span class="selector-tag">div</span> class=&quot;box1&quot;&gt;&lt;/<span class="selector-tag">div</span>&gt;&lt;<span class="selector-tag">div</span> class=&quot;box2&quot;&gt;&lt;/<span class="selector-tag">div</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>2.添加word-spacing 属性: word-spacing: -50px;</p>
+<ol start="3">
+<li>给父元素设置font-size: 0px;</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h3 id="Position"><a href="#Position" class="headerlink" title="Position"></a>Position</h3><ul>
+<li>static (默认):不可以调整top,left,right,bottom等值</li>
+<li>relative(相对定位):可以调整top,left,right,bottom等值(没有脱离文档流，根据原位置定位)—–&gt;实现单个块元素移动</li>
+<li>absolute(绝对定位):脱离了文档流，根据左上角定位</li>
+<li>fixed(固定定位):不会随着页面滚动，固定在指定位置</li>
+<li>sticky(粘行定位):当滚动到一定的位置(设置与文档的距离)开始脱离文档流<h4 id="z-index"><a href="#z-index" class="headerlink" title="z-index"></a>z-index</h4>用于调整标签所在图层的优先级</li>
+<li>默认static的z-index为0</li>
+<li>z-index越大，优先级越高</li>
+<li>一样大的情况下元素越靠后，图层越靠上</li>
+</ul>
+<h3 id="Float"><a href="#Float" class="headerlink" title="Float"></a>Float</h3><p>可以使元素靠左或者靠右</p>
+<blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">nav</span>&gt;&lt;/<span class="selector-tag">nav</span>&gt; <span class="comment">/*表示此区块时导航区域*/</span></span><br><span class="line"> &lt;<span class="selector-tag">main</span>&gt;&lt;/<span class="selector-tag">main</span>&gt;<span class="comment">/*表示此区块是网页的主题区域(放入正文内容)*/</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="模态框"><a href="#模态框" class="headerlink" title="模态框"></a>模态框</h3><p>通常指页面中弹出的窗口</p>
+<p>Features:</p>
+<ul>
+<li>总是在浏览器中心</li>
+<li>一个透明背景<br><img src="https://document.youkeda.com/P3-1-HTML-CSS/1.9/combat-1-modal/3.png?x-oss-process=image/resize,w_800/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10" alt="模态框"><h4 id="元素水平居中"><a href="#元素水平居中" class="headerlink" title="元素水平居中"></a>元素水平居中</h4></li>
+<li>内部行内元素:在父容器中<code>text-align: center</code></li>
+<li>内部块状元素:在子容器中:<code>margin: 0 auto</code><h4 id="元素垂直居中"><a href="#元素垂直居中" class="headerlink" title="元素垂直居中"></a>元素垂直居中</h4></li>
+<li>块状元素利用<code>margin</code><blockquote>
+<p>margin-top = (modal top - img top) / 2</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><h4 id="liner-gradient"><a href="#liner-gradient" class="headerlink" title="liner-gradient"></a>liner-gradient</h4><p><em><strong>作为background的一个值</strong></em></p>
+<ul>
+<li>实现<em><strong>渐变</strong></em><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span>:<span class="built_in">linear-gradient</span>(to right, <span class="number">#ffffff</span> <span class="number">0%</span>,<span class="number">#000000</span> <span class="number">100%</span>)</span><br><span class="line">   <span class="comment">/*渐变方向，起始颜色 起始位置， 终止颜色 终止位置*/</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="背景图片"><a href="#背景图片" class="headerlink" title="背景图片"></a>背景图片</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">网址</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>默认会让图片重复直到布满容器<blockquote>
+<p>利用<code>background-repeat:no-repeat;</code>进制图片重复<br>其中<code>repeat-x``为允许在水平方向重复,</code>repeat-y<code>允许在垂直方向重复,</code>repeat```为默认值表示垂直水平方向都重复。</p>
+</blockquote>
+</li>
+<li>图片不居中<blockquote>
+<p>使用<code>background-position: center</code>使背景图片居中</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="background-position的值"><a href="#background-position的值" class="headerlink" title="background-position的值"></a>background-position的值</h5><ul>
+<li>top left, top center, top right, center left, center center, center right, bottom left, bottom center, bottom right —-&gt;左侧代表垂直布局, 右侧代表水平布局</li>
+<li>x% y% —-&gt;左侧代表垂直位置, 右侧代表水平位置</li>
+<li>xpx ypx —–&gt;左侧代表垂直布局, 右侧代表水平布局</li>
+</ul>
+<h5 id="background-size的值"><a href="#background-size的值" class="headerlink" title="background-size的值"></a>background-size的值</h5><ul>
+<li>cover把背景扩展至足够大，使其完全覆盖背景区域。某些部位也许无法显示在背景定位区域中</li>
+<li>contain 把图像扩展至最大尺寸，以使其宽度和高度完全适应内容区域。</li>
+<li>xpx ypx 手动设置宽度与高度</li>
+<li>x% y% 手动设置宽度和高度相对于容器的百分比 </li>
+</ul>
+<h5 id="background-合并写法"><a href="#background-合并写法" class="headerlink" title="background 合并写法"></a>background 合并写法</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span> :[background-color] [background-image] [background-repeat] [background-attachment] [background-position] / [background-size] [background-clip];</span><br></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<ol>
+<li>对于内联元素，对齐默认为基线对齐<br>解决方法:设置<code>vertical-align</code>的值(默认为baseline)为top、middle、bottom</li>
+<li>将一个子元素设置为<code>absolute</code>，实现以父元素为基准需将父元素设置为<code>relative</code></li>
+<li>一个块状元素中的文字水平居中 —&gt; text-align = center    垂直居中 —-&gt; line-hight = father.height</li>
+</ol>
+</blockquote>
+<h3 id="伪元素-—-after-before"><a href="#伪元素-—-after-before" class="headerlink" title="伪元素 — ::after / ::before"></a>伪元素 — <code>::after / ::before</code></h3><p>利用CSS代码在标签内部的前面或者后面添加一个行内元素<br>写法：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* before */</span></span><br><span class="line">选择器<span class="selector-pseudo">::before</span>&#123;</span><br><span class="line">  <span class="comment">/* 使用空白符号占位 */</span></span><br><span class="line">  <span class="attribute">content</span>: <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* after */</span></span><br><span class="line">选择器<span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">  <span class="comment">/* 使用空白符号占位 */</span></span><br><span class="line">  <span class="attribute">content</span>: <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>input 对伪元素不支持</p>
+</blockquote>
+<h3 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h3><ul>
+<li>子元素设置高度，父元素的高度由子元素撑起，使父元素的高度自适应</li>
+<li>影响父元素兄弟元素的布局<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.son-one</span>&#123;</span><br><span class="line">  <span class="comment">/* 浮动后的元素宽度默认和它内容的宽度一致，即和文字的宽度一致。</span></span><br><span class="line"><span class="comment">  这里为了美观，设置一个自定义宽度*/</span></span><br><span class="line">  <span class="attribute">width</span>:<span class="number">33.3%</span>;</span><br><span class="line">  <span class="attribute">float</span><span class="selector-pseudo">:left</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.son-two</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">33.3%</span>;</span><br><span class="line">  <span class="attribute">float</span><span class="selector-pseudo">:left</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.son-three</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">33.3%</span>;</span><br><span class="line">  <span class="attribute">float</span><span class="selector-pseudo">:left</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.father-two</span>&#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">150px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#CACACA</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+得到的的father-two一部分会跑到father-one的下面<br>清除这种浮动：<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 添加清除浮动类名 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;father-one clearfix&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;son-one&quot;</span>&gt;</span>son-one<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;son-two&quot;</span>&gt;</span>son-two<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;son-three&quot;</span>&gt;</span>son-three<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><strong>哪个盒子的子元素有浮动，就在哪个盒子上添加清除浮动</strong>*</li>
+</ul>
+<blockquote>
+<p>出现第一行的最后一块有位置但跑到第二行，因为最后一个盒子的右边距多余，总宽度超过父类宽度要清除，将最后一个盒子右边距设置为0</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.last</span>&#123;</span><br><span class="line"> <span class="attribute">margin-right</span>:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><code> &lt;&gt;</code>在html中会报错，用<code>&amp;lt;</code>转义<code>&lt;</code>,用<code>&amp;gt;</code>转义<code>&gt;</code></p>
+</blockquote>
+<h3 id="事件伪类"><a href="#事件伪类" class="headerlink" title="事件伪类"></a>事件伪类</h3><h4 id="hover-鼠标移上去"><a href="#hover-鼠标移上去" class="headerlink" title="hover (鼠标移上去)"></a>hover (鼠标移上去)</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">li</span><span class="selector-pseudo">:hover</span>&#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#47A0FC</span>;</span><br><span class="line">    <span class="attribute">color</span>: white;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="active-鼠标点击"><a href="#active-鼠标点击" class="headerlink" title="active (鼠标点击)"></a>active (鼠标点击)</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span>&gt;<span class="selector-tag">li</span><span class="selector-pseudo">:active</span>&#123;</span><br><span class="line">    <span class="comment">/* 要改变的效果 */</span></span><br><span class="line">    <span class="attribute">color</span>: black;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">可以通过父元素的```:hover```改变子元素的样式</span><br><span class="line"></span><br><span class="line">```HTML</span><br><span class="line">&lt;div&gt;</span><br><span class="line"> &lt;span&gt;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:hover</span>&gt;<span class="selector-tag">span</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>:blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="focus-获取焦点后"><a href="#focus-获取焦点后" class="headerlink" title="focus (获取焦点后)"></a>focus (获取焦点后)</h4><p><img src="https://qgt-document.oss-cn-beijing.aliyuncs.com/P3-2-HTML-CSS/1.2/f2-2-3-demo3.gif" alt="renderings"></p>
+<blockquote>
+<p>通过兄弟元素的伪类改变另一个兄弟元素的属性</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 选中获得焦点的 input 元素后面一个 div 元素（input 和 div 是兄弟元素） */</span></span><br><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:focus</span>+<span class="selector-tag">div</span>&#123;</span><br><span class="line">    <span class="attribute">border</span>:<span class="number">1px</span> solid blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="列表伪类"><a href="#列表伪类" class="headerlink" title="列表伪类"></a>列表伪类</h3><h4 id="匹配其父元素中其中一个子类"><a href="#匹配其父元素中其中一个子类" class="headerlink" title="匹配其父元素中其中一个子类"></a>匹配其父元素中其中一个子类</h4><ul>
+<li><p>第一个子类</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span>&gt;<span class="selector-tag">li</span><span class="selector-pseudo">:first</span>-child&#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#3687FC</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#FFFFFF</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>最后一个子类，即<code>:last-child</code></p>
+</li>
+<li><p>第n个子类，即<code>:nth-child()</code> //并不是第n个相应类，而是第n个子标签</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span>&gt;<span class="selector-tag">li</span><span class="selector-pseudo">:nth-child</span>(<span class="number">3</span>)&#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#3687FC</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#FFFFFF</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>选中奇数(odd)<br>选中偶数(even)</p>
+<figure class="highlight plaintext"><figcaption><span>+ 3)```表示大于等于三的子类 (n为大于等于零的整数)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">同样与标签类似的span等也可以使用</span><br><span class="line"></span><br><span class="line">### cursor(光标变化)</span><br><span class="line"></span><br><span class="line">![cursor]&#123;https://qgt-document.oss-cn-beijing.aliyuncs.com/P3-2-HTML-CSS/1.3/f2-3-1-show.gif&#125;</span><br><span class="line">实现鼠标箭头的变化</span><br><span class="line"></span><br><span class="line">```html</span><br><span class="line">&lt;p&gt;点击这里了解更多cursor性质&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span>&#123;</span><br><span class="line">    <span class="attribute">cursor</span>: pointer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/cursor">cursor值</a></p>
+</li>
+</ul>
+<h3 id="box-shadow-text-shadow"><a href="#box-shadow-text-shadow" class="headerlink" title="box-shadow/text-shadow"></a>box-shadow/text-shadow</h3><p>设置字体与盒的阴影</p>
+<h3 id="Flex布局"><a href="#Flex布局" class="headerlink" title="Flex布局"></a>Flex布局</h3><p><em><strong>最显著的效果是吧原本上到下的排列的块状元素变成水平排列</strong></em></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span>项目1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span>项目2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span>项目3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#D5E8D4</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#5D9E5A</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#FFF2CC</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#B7A570</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>其中container称为flex容器</li>
+<li>里面的一级子类称为flex项目</li>
+</ul>
+<blockquote>
+<p>设置为flex布局之后，元素的float、clear和vertical-align属性将失效。</p>
+</blockquote>
+<h4 id="justify-content"><a href="#justify-content" class="headerlink" title="justify-content"></a>justify-content</h4><ul>
+<li>控制水平方向分的属性（flex布局中）<blockquote>
+<p>justify 是容器的属性，要加在容器上</p>
+</blockquote>
+</li>
+</ul>
+<p><code>justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly;</code></p>
+<p><img src="https://document.youkeda.com/P3-2-HTML-CSS/1.4/9.jpg?x-oss-process=image/resize,w_800/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10" alt="justify"></p>
+<h4 id="align-items"><a href="#align-items" class="headerlink" title="align-items"></a>align-items</h4><ul>
+<li>控制垂直方向上的分布<br><code>align-items: flex-start | flex-end | center | baseline | stretch;</code></li>
+</ul>
+<p><img src="https://document.youkeda.com/P3-2-HTML-CSS/1.4/10.jpg?x-oss-process=image/resize,w_800/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10" alt="align-items"></p>
+<h4 id="flex-wrap"><a href="#flex-wrap" class="headerlink" title="flex-wrap"></a>flex-wrap</h4><ul>
+<li>当容器宽度大于各个元素宽度和，各个元素处于舒展状态，其宽度等于设置的宽度</li>
+<li>当容器宽度小于各个元素宽度和，各个元素会被压缩</li>
+</ul>
+<p><code>flex-wrap:nowrap|wrap|wrap-reverse;</code></p>
+<h5 id="nowrap-默认值"><a href="#nowrap-默认值" class="headerlink" title="nowrap(默认值)"></a>nowrap(默认值)</h5><ul>
+<li>不换行</li>
+</ul>
+<h5 id="wrap"><a href="#wrap" class="headerlink" title="wrap"></a>wrap</h5><ul>
+<li>换行—-第一行在上方</li>
+</ul>
+<h5 id="wrap-reverse"><a href="#wrap-reverse" class="headerlink" title="wrap-reverse"></a>wrap-reverse</h5><ul>
+<li>换行—-第一行在下方</li>
+</ul>
+<p><img src="https://document.youkeda.com/P3-2-HTML-CSS/1.4/19.jpg?x-oss-process=image/resize,w_800/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10" alt="wrap"></p>
+<h4 id="flex-none-1-项目属性"><a href="#flex-none-1-项目属性" class="headerlink" title="flex:none | 1; 项目属性"></a>flex:none | 1; 项目属性</h4><blockquote>
+<p>flex 控制项目的放大和缩小</p>
+</blockquote>
+<ul>
+<li>flex:none; 不允许项目放大或缩小</li>
+<li>flex:1; 自动填充剩余空间</li>
+</ul>
+<blockquote>
+<p>使用flex-shrink : 0 阻止该元素压缩</p>
+</blockquote>
+<h4 id="flex-direction"><a href="#flex-direction" class="headerlink" title="flex-direction"></a>flex-direction</h4><ul>
+<li><p>flex布局中两根轴：主轴(main axis)与交叉轴(cross axis)<br><img src="https://document.youkeda.com/P3-2-HTML-CSS/1.4/42.jpg?x-oss-process=image/resize,w_800/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10" alt="axis"></p>
+</li>
+<li><p>容器中的项目默认按照主轴方向排列，因此改变项目排列顺序只需改变主轴方向</p>
+</li>
+</ul>
+<p><code>flex-direction: row | row-reverse | column | column-reverse;</code></p>
+<ul>
+<li>row：行<ul>
+<li>row 为默认值,主轴水平方向，起点在左端  </li>
+<li>row-reverse 主轴水平方向，起点在右端</li>
+</ul>
+</li>
+<li>column：列<ul>
+<li>column 主轴为垂直方向，起点在上沿</li>
+<li>column-reverse 主轴为垂直方向，起点在下沿<br><img src="https://document.youkeda.com/P3-2-HTML-CSS/1.4/8.jpg?x-oss-process=image/resize,w_800/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10" alt="flex-direction"><blockquote>
+<p>单位<code>vh</code>表示相对于浏览器大小的百分比<br>justify-content 与 align-items 的控制方向由主轴方向决定</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="单行文本溢出省略"><a href="#单行文本溢出省略" class="headerlink" title="单行文本溢出省略"></a>单行文本溢出省略</h3><h4 id="white-space-nowrap"><a href="#white-space-nowrap" class="headerlink" title="white-space: nowrap"></a>white-space: nowrap</h4><blockquote>
+<p>一定要加</p>
+</blockquote>
+<ul>
+<li>用来实现不换行</li>
+</ul>
+<h4 id="元素内容溢出-overflow"><a href="#元素内容溢出-overflow" class="headerlink" title="元素内容溢出 overflow"></a>元素内容溢出 overflow</h4><p><code>overflow: visible | hidden | inherit | scroll | auto</code></p>
+<ul>
+<li>visible: 默认值。内容不被修剪，呈现在元素框外</li>
+<li>hidden: 内容会被修剪，并且超出的内容不可见。</li>
+<li>inherit: 规定应该从父元素继承overflow属性的值</li>
+<li>scroll: 内容会被修剪，浏览器会显示滚动条以便查看内容</li>
+<li>auto: 由浏览器定夺，如果内容被修剪，就会显示滚动条</li>
+</ul>
+<h4 id="文本溢出省略-text-overflow"><a href="#文本溢出省略-text-overflow" class="headerlink" title="文本溢出省略 text-overflow"></a>文本溢出省略 text-overflow</h4><p><code>text-overflow: clip | ellipsis</code></p>
+<ul>
+<li>clip: 默认值，表示内容区域的极限处截断文本，可以简单的理解成超出部分被切掉</li>
+<li>ellipsis: 表示用一个省略号（”…”）来表示被截断的文本</li>
+</ul>
+<blockquote>
+<p>包含文字的元素必须是块状元素，并且宽度适合（不能是无穷宽）</p>
+</blockquote>
+<h3 id="多行文本超出省略"><a href="#多行文本超出省略" class="headerlink" title="多行文本超出省略"></a>多行文本超出省略</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 隐藏超出部分 */</span></span><br><span class="line"><span class="attribute">overflow</span> : hidden;</span><br><span class="line"><span class="comment">/* 文本超出就用省略号 */</span></span><br><span class="line"><span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line"><span class="comment">/* 把对象作为弹性伸缩盒子模型显示 */</span></span><br><span class="line"><span class="attribute">display</span>: -webkit-box;</span><br><span class="line"><span class="comment">/* WebKit内核的浏览器的私有属性，设置文本超出2行就用省略号 */</span></span><br><span class="line">-webkit-line-clamp: <span class="number">2</span>;</span><br><span class="line"><span class="comment">/* WebKit内核的浏览器的私有属性，设置或检索伸缩盒对象的子元素的排列方式 */</span></span><br><span class="line">-webkit-box-orient: vertical;</span><br></pre></td></tr></table></figure>
+
+<h3 id="CSS预处理"><a href="#CSS预处理" class="headerlink" title="CSS预处理"></a>CSS预处理</h3><h4 id="Sass"><a href="#Sass" class="headerlink" title="Sass"></a>Sass</h4><ul>
+<li>使一款CSS预编译器 (其他与编译器less、Stylus)</li>
+</ul>
+<h5 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h5><ul>
+<li>变量以美元符号“$”开头，赋值方法与CSS属性的写法一样</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$width</span>: <span class="number">10px</span>;</span><br><span class="line"></span><br><span class="line"># <span class="selector-tag">main</span> &#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="variable">$width</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>定义数组变量</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$animals</span>: puppy kitty chick;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>简单计算</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$width</span>: <span class="number">10px</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#main</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$width</span> / <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>插值法</li>
+</ul>
+<blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```Scss</span><br><span class="line">$name: &quot;mail&quot;;</span><br><span class="line">$top-or-bottom: &quot;top&quot;;</span><br><span class="line">$left-or-right: &quot;left&quot;;</span><br><span class="line"></span><br><span class="line">.icon-#&#123;$name&#125; &#123;</span><br><span class="line"> background-image: url(&quot;/icons/#&#123;$name&#125;.svg&quot;);</span><br><span class="line"> position: absolute;</span><br><span class="line"> #&#123;$top-or-bottom&#125;: 0;</span><br><span class="line"> #&#123;$left-or-right&#125;: 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<ol>
+<li><code>.icon-#&#123;name&#125;:</code> :$name为mail，编译后选择器为.icon-mail</li>
+<li><code>url(&quot;/icons/#&#123;$name&#125;.svg&quot;)</code>:$name为mail，编译后图片路径为/icon/main.svg;</li>
+<li><code>#&#123;$top-or-bottom&#125;: 0</code>:$top-or-bottom为top，编译后声明为top:0</li>
+</ol>
+<h5 id="嵌套"><a href="#嵌套" class="headerlink" title="嵌套"></a>嵌套</h5><p>*** 规则：内层样式将它的外层的选择器作为选择器***<br><img src="https://document.youkeda.com/P3-2-HTML-CSS/1.6/3.jpg?x-oss-process=image/resize,w_800/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10" alt="嵌套规则"></p>
+<ul>
+<li>父选择器 &amp;</li>
+</ul>
+<p><em><strong>当嵌套外层父元素时可以用 &amp;</strong></em><br><img src="https://document.youkeda.com/P3-2-HTML-CSS/1.6/4.jpg?x-oss-process=image/resize,w_800/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10" alt="与父选择器嵌套"></p>
+<p>或者更加特殊<br><img src="https://document.youkeda.com/P3-2-HTML-CSS/1.6/5.jpg?x-oss-process=image/resize,w_800/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10" alt="special"></p>
+<h5 id="复用：mixin-include"><a href="#复用：mixin-include" class="headerlink" title="复用：mixin/include"></a>复用：mixin/include</h5><p><em><strong>定义重复使用的样式</strong></em></p>
+<ul>
+<li><p>无参数混合</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> square &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用：</span></span><br><span class="line"><span class="selector-class">.user-avatar</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.admin-avatar</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>“@mixin”：定义可复用的样式</p>
+</li>
+<li><p>“@include”：应用可复用的样式</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>有参数混合</p>
+<ul>
+<li>无默认值<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> square(<span class="variable">$size</span>) &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$size</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="variable">$size</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用</span></span><br><span class="line"><span class="selector-class">.avatar</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square(<span class="number">100px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><ul>
+<li>有默认值<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> square(<span class="variable">$size</span>: <span class="number">100px</span>) &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$size</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="variable">$size</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不传参数就会使用默认的值 100px</span></span><br><span class="line"><span class="selector-class">.avatar</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入参数就会使用传入的值 200px</span></span><br><span class="line"><span class="selector-class">.avatar-200</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square(<span class="variable">$size</span>: <span class="number">200px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h4 id="媒体查询"><a href="#媒体查询" class="headerlink" title="媒体查询"></a>媒体查询</h4><p><img src="https://document.youkeda.com/P3-2-HTML-CSS/1.7/18.jpg?x-oss-process=image/resize,w_800/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10" alt="媒体查询"></p>
+<blockquote>
+<p>“screen”：告知设备在打印页面时使用衬线字体，在屏幕上显示时用无衬线字体</p>
+</blockquote>
+<h5 id="条件：最大宽度（max-width）"><a href="#条件：最大宽度（max-width）" class="headerlink" title="条件：最大宽度（max-width）"></a>条件：最大宽度（max-width）</h5><p><img src="https://document.youkeda.com/P3-2-HTML-CSS/1.7/19.jpg?x-oss-process=image/resize,w_800/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10" alt="最大宽度"></p>
+<h5 id="条件：最小宽度（min-width）"><a href="#条件：最小宽度（min-width）" class="headerlink" title="条件：最小宽度（min-width）"></a>条件：最小宽度（min-width）</h5><p><img src="https://document.youkeda.com/P3-2-HTML-CSS/1.7/20.jpg?x-oss-process=image/resize,w_800/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10" alt="最小宽度"></p>
+<h5 id="逻辑操作符-and"><a href="#逻辑操作符-and" class="headerlink" title="逻辑操作符 and"></a>逻辑操作符 and</h5><p><img src="https://document.youkeda.com/P3-2-HTML-CSS/1.7/21.jpg?x-oss-process=image/resize,w_800/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10" alt="and使用"></p>
+<h4 id="断点"><a href="#断点" class="headerlink" title="断点"></a>断点</h4><p>当两个断点重叠冲突时，样式会优先选取靠后的一个</p>
+<p>即：</p>
+<ul>
+<li>媒体查询用max-width 表示条件的时候，大断点方上面。</li>
+<li>反过来，用min-width 表示条件的时候，小的断点方上面。</li>
+</ul>
+<h3 id="meta"><a href="#meta" class="headerlink" title="meta"></a>meta</h3><p>在<head>中的<meta>元素时自闭合元素，只有开始标签</p>
+<ul>
+<li><code> &lt;meta&gt;</code>元素表示那些不能由其他HTML元相关元素表示的任何元数据信息——如是否允许用户缩放、针对搜索引擎和更新频度的描述和关键词。</li>
+</ul>
+<h4 id="移动web前端meta的基础设置"><a href="#移动web前端meta的基础设置" class="headerlink" title="移动web前端meta的基础设置"></a>移动web前端meta的基础设置</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 设置移动端视图 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>width：viewport的宽度</li>
+<li>height：viewport的高度（少用）</li>
+<li>initial-scale：初始的缩放比例</li>
+<li>minimum-scale：允许用户缩放到的最小比例</li>
+<li>maximum-scale：允许用户缩放到的最大比例</li>
+<li>user-scalable：用户是否可以手动缩放</li>
+</ul>
+<h3 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h3><p>rem 是相对长度单位，px是一个绝对单位</p>
+<blockquote>
+<p>默认字体大小为16px<br>换算规则—-&gt; 1rem = 根元素的字体大小</p>
+</blockquote>
+<h3 id="em"><a href="#em" class="headerlink" title="em"></a>em</h3><p>根据父元素的字体大小转换</p>
+<h3 id="vw-vh"><a href="#vw-vh" class="headerlink" title="vw/vh"></a>vw/vh</h3><ul>
+<li>都是长度单位<br>换算：</li>
+<li>1vw = 1/100 视口宽度</li>
+<li>1 vh = 1/100 视口高度</li>
+</ul>
+<h3 id="Sass-自定义函数"><a href="#Sass-自定义函数" class="headerlink" title="Sass 自定义函数"></a>Sass 自定义函数</h3><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@function</span> psd2px(<span class="variable">$px</span>) &#123;</span><br><span class="line">  <span class="keyword">@return</span> #&#123;<span class="variable">$px</span> / <span class="number">2</span>&#125;px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.header</span> &#123;</span><br><span class="line">  <span class="comment">// 假设设计稿上高度是100px，那么函数参数就写100，计算后返回的值就是 50px</span></span><br><span class="line">  <span class="attribute">height</span>: <span class="built_in">psd2px</span>(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>横向滚动：overflow:scroll //用-webit-overflow-scrolling:touch解决ios滚动卡顿<br>实现透明背景变成有背景：</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.btn-addclass</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">./images/add.png</span>) no-repeat center / <span class="built_in">px2rem</span>(<span class="number">16</span>) <span class="built_in">px2rem</span>(<span class="number">16</span>), <span class="built_in">linear-gradient</span>(to right, <span class="built_in">rgba</span>(<span class="number">#fff</span>, <span class="number">0.8</span>), <span class="built_in">rgba</span>(<span class="number">#fff</span>, <span class="number">0.8</span>) <span class="number">50%</span>, <span class="number">#fff</span> <span class="number">50%</span>);</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/blog/2023/03/22/%E5%89%8D%E7%AB%AF/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-java" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2023/03/22/java/">Java</a>
+    </h1>
+  
+
+        
+        <a href="/blog/2023/03/22/java/" class="archive-article-date">
+  	<time datetime="2023-03-22T05:04:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-网络编程"><a href="#1-网络编程" class="headerlink" title="1.网络编程"></a>1.网络编程</h2><h3 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h3><ul>
+<li>协议与域名之间  “://“ </li>
+<li>路径: “/“</li>
+<li>参数: “参数名 = 参数值”</li>
+</ul>
+<hr>
+<h3 id="Get-请求-无参数"><a href="#Get-请求-无参数" class="headerlink" title="Get 请求 - 无参数"></a>Get 请求 - 无参数</h3><p><em><strong>抓取网站用库:</strong></em> <code>okhttp3</code><br>安装方式：在<code>pom.xml</code>中添加依赖</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> &lt;!-- https:<span class="comment">//mvnrepository.com/artifact/com.squareup.okhttp3/okhttp --&gt;</span></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line"> &lt;groupId&gt;com.squareup.okhttp3&lt;/groupId&gt;</span><br><span class="line"> &lt;artifactId&gt;okhttp&lt;/artifactId&gt;</span><br><span class="line"> &lt;version&gt;<span class="number">4.1</span><span class="number">.0</span>&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>实例化 <code>OkHttpClient</code></li>
+<li>实例化<code>Request</code>对象</li>
+<li>构建对象 （调用对象）</li>
+<li>执行时会出错，需要<code>Catch</code>捕捉</li>
+<li>获取返回的字符串内容</li>
+</ol>
+<hr>
+<h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><blockquote>
+<p>API为应用程序接口，一般是指一些预先定义函数，目的是可以为开发人员快速访问某一程<br>序，而无需和访问源码，或理解它内部工作的细节。<br>即: API可以快速调用某个程序。</p>
+</blockquote>
+<p>代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> stastic String <span class="title function_">getContent</span><span class="params">(String url)</span>&#123;</span><br><span class="line">	<span class="type">OkHttpClient</span> <span class="variable">okHttpClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OkHttpClient</span>();</span><br><span class="line">	<span class="type">Request</span> <span class="variable">request</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Request</span>.builder().url(<span class="string">&quot;&quot;</span>对应的网址<span class="string">&quot;&quot;</span>).build;</span><br><span class="line">	<span class="type">Call</span> <span class="variable">call</span> <span class="operator">=</span> okHttpClient.newCall(request);</span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		result = call.execute().body.string();</span><br><span class="line">	&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">		system.out.println(<span class="string">&quot;request&quot;</span> + url + <span class="string">&quot;error&quot;</span>);</span><br><span class="line">    	e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Okhttp3 的源代码<br><img src="https://style.youkeda.com/img/ham/course/j3/j14-2-1-12.png?x-oss-process=image/resize,w_1534/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10" alt="Okhttp3"></p>
+</blockquote>
+<hr>
+<h3 id="post-方法"><a href="#post-方法" class="headerlink" title="post() 方法"></a>post() 方法</h3><blockquote>
+<p>用于提交数据至服务器进行增加、修改、删除操作<br>数据不是放在url中，而是放在表单中提交</p>
+</blockquote>
+<ul>
+<li>构建 <code>FormBody</code>表单对象，放置表单数据<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Builder</span> <span class="variable">builder</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FormBody</span>.Builder();</span><br><span class="line"><span class="comment">// 设置数据，第一个参数是数据名，第二个参数是数据值</span></span><br><span class="line">builder.add(<span class="string">&quot;&quot;</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line"><span class="type">FormBody</span> <span class="variable">formBody</span> <span class="operator">=</span> builder.build();</span><br><span class="line"><span class="type">Request</span> <span class="variable">request</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Request</span>.Builder().url(url).post(formBody).build();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Public stastic <span class="title function_">postContent</span><span class="params">(String url,Map&lt;Sting,Stirng&gt; formData)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">//okHttpClient 实例</span></span><br><span class="line">	<span class="type">OkHttpClient</span> <span class="variable">okHttpClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OkHttpClient</span>();</span><br><span class="line">	<span class="comment">//post 方式提交的数据</span></span><br><span class="line">	<span class="type">Builder</span> <span class="variable">builder</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FormBody</span>.Builder();</span><br><span class="line">	<span class="comment">//放入表单数据</span></span><br><span class="line">	<span class="keyword">for</span> (String key:formData.keyset())</span><br><span class="line">	&#123;</span><br><span class="line">		builder.add(key,formData.get(key));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//构建 FormBody 对象</span></span><br><span class="line">	<span class="type">FormBody</span> <span class="variable">formBody</span> <span class="operator">=</span> builder.build();</span><br><span class="line">	<span class="type">Request</span> <span class="variable">request</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Request</span>.Builder().url(url).post(formBody).build();</span><br><span class="line">	<span class="type">Call</span> <span class="variable">call</span> <span class="operator">=</span> okHttpClient.newCall(request);</span><br><span class="line">	<span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">	result = call.execute().body().string();</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>POST JSON 数据parse(“文件目录;charset=utf-8”);<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">MediaType</span> <span class="variable">JSON_TYPE</span> <span class="operator">=</span> MediaType.</span><br></pre></td></tr></table></figure>
+<ol>
+<li>将数据转换成<code>JSON</code>格式的字符串，调用<code>JSON.toJSONString()</code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">param</span> <span class="operator">=</span> JSON.toJSONString(forData);</span><br></pre></td></tr></table></figure></li>
+<li>创建<code>RequestBody</code>实例，提交的是文件目录与编码格式<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">RequestBody</span> <span class="variable">requestBody</span> <span class="operator">=</span> RequestBody.creat(JSON_TYPE,param);</span><br></pre></td></tr></table></figure></li>
+<li>构建``Request<code>实例对象，调用</code>.post(requestBody)```表示提交数据<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Request</span> <span class="variable">request</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Request</span>.Builder().url(url).post(formBody)</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li>Response - 网页<ul>
+<li>获取状态码<br><code>call.execute().code()</code></li>
+<li>利用Response爬取数据(用一次请求)<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Response</span> <span class="variable">response</span> <span class="operator">=</span> call.execute();</span><br><span class="line"><span class="type">int</span> <span class="variable">code</span> <span class="operator">=</span> response.code();</span><br><span class="line">result = response.body().string();</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>Response - 非文本文件<br>  非文本文件不能用<code>response.body().string()</code>获取<br>  要用<code>response.body().bytes();</code>获取</li>
+<li>Response - JSON<br>  将<code>JSON</code>数据转化为<code>Map</code>格式  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Map</span> <span class="variable">contentObj</span> <span class="operator">=</span> JSON.parseObject(content,Map.class);</span><br></pre></td></tr></table></figure></li>
+<li>防盗链<blockquote>
+<p>必须从上一主页面进入网页<br>用<code>Referer</code>信息，表示请求来源</p>
+</blockquote>
+</li>
+<li>Host<blockquote>
+<p>表示当前请求的域名<br>属于<code>Headers</code>数据</p>
+</blockquote>
+</li>
+<li>下载文件<ul>
+<li>写入文本文件<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;foo.text&quot;</span>);</span><br><span class="line"><span class="type">FileWriter</span> <span class="variable">fileWritter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileWriter</span>(file.getName());</span><br><span class="line"><span class="comment">//写入内容</span></span><br><span class="line">fileWritter.write(content);</span><br><span class="line"></span><br><span class="line"><span class="comment">//关闭</span></span><br><span class="line">fileWritter.close();</span><br></pre></td></tr></table></figure></li>
+<li>写入二进制(excel,图片等)文件<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//文件对象</span></span><br><span class="line"><span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;china-city-list.xlsx&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//写文件</span></span><br><span class="line"><span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(file);</span><br><span class="line">fos.write(data);</span><br><span class="line"></span><br><span class="line"><span class="comment">//必须刷新并关闭</span></span><br><span class="line">fos.flush();</span><br><span class="line">fos.close();</span><br></pre></td></tr></table></figure></li>
+<li>解析excel<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line"> 		&lt;groupId&gt;com.alibaba&lt;/groupId&gt;</span><br><span class="line"> 		&lt;artifactId&gt;easyexcel&lt;/artifactId&gt;</span><br><span class="line"> 		&lt;version&gt;<span class="number">3.1</span><span class="number">.1</span>&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+添加依赖</li>
+<li><strong>解析路径一定是:sheet -&gt; 行 -&gt; 列</strong>*</li>
+</ul>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 读取第一个sheet</span></span><br><span class="line">List&lt;Map&lt;Integer, String&gt;&gt; sheetDatas = EasyExcel.read(文件名).sheet(<span class="number">0</span>).doReadSync();</span><br><span class="line"><span class="comment">//List 中每一个元素表示一行</span></span><br><span class="line"><span class="keyword">for</span> (Map&lt;Integer, String&gt;rowData :sheetDatas)&#123;</span><br><span class="line">	<span class="comment">//Map 中用序号代指每一列</span></span><br><span class="line">	<span class="keyword">for</span> (Integer index : rowData.keySet())&#123;</span><br><span class="line">	<span class="comment">//列值</span></span><br><span class="line">	<span class="type">Stirng</span> <span class="variable">columnValue</span> <span class="operator">=</span> rowData.get(index);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <img src="https://style.youkeda.com/img/ham/course/py2/j14-5-3-1.svg" alt="excel与java"></li>
+<li>cookie<br>  <em><strong>cookie的内容要从第一行开始填入</strong></em><br>  cookie 是存放在客户端浏览器的，而且是临时的因此登录后还行在登录状态与服务器通讯就比较麻烦，用session可解决问题</li>
+<li>session  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">	  <span class="comment">// 用 CookieJar 实现 cookie 的存储，便于登录后请求其它 URL 可以复用</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">OkHttpClient</span> <span class="variable">okHttpClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OkHttpClient</span>.Builder()</span><br><span class="line">      .cookieJar(<span class="keyword">new</span> <span class="title class_">CookieJar</span>() &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">final</span> HashMap&lt;String, List&lt;Cookie&gt;&gt; cookieStore = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">saveFromResponse</span><span class="params">(HttpUrl url, List&lt;Cookie&gt; cookies)</span> &#123;</span><br><span class="line">          cookieStore.put(<span class="string">&quot;mtime.com&quot;</span>, cookies);</span><br><span class="line">          System.out.println(<span class="string">&quot;[saveFromResponse]url.host()=&quot;</span> + url.host());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> List&lt;Cookie&gt; <span class="title function_">loadForRequest</span><span class="params">(HttpUrl url)</span> &#123;</span><br><span class="line">          System.out.println(<span class="string">&quot;[loadForRequest]url.host()=&quot;</span> + url.host());</span><br><span class="line">          List&lt;Cookie&gt; cookies = cookieStore.get(<span class="string">&quot;mtime.com&quot;</span>);</span><br><span class="line">          <span class="keyword">return</span> cookies != <span class="literal">null</span> ? cookies : <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">      .build();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>复用<br>  创建一个方法</li>
+</ul>
+</li>
+<li>JavaMail<br>  添加依赖  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line"> &lt;groupId&gt;javax.mail&lt;/groupId&gt;</span><br><span class="line"> &lt;artifactId&gt;mail&lt;/artifactId&gt;</span><br><span class="line"> &lt;version&gt;<span class="number">1.4</span>&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+代码<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.security.Security;</span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"><span class="keyword">import</span> javax.mail.Authenticator;</span><br><span class="line"><span class="keyword">import</span> javax.mail.Message;</span><br><span class="line"><span class="keyword">import</span> javax.mail.PasswordAuthentication;</span><br><span class="line"><span class="keyword">import</span> javax.mail.Session;</span><br><span class="line"><span class="keyword">import</span> javax.mail.Transport;</span><br><span class="line"><span class="keyword">import</span> javax.mail.internet.InternetAddress;</span><br><span class="line"><span class="keyword">import</span> javax.mail.internet.MimeMessage;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MailClient</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">final</span> <span class="type">String</span> <span class="variable">SSL_FACTORY</span> <span class="operator">=</span> <span class="string">&quot;javax.net.ssl.SSLSocketFactory&quot;</span>;</span><br><span class="line"></span><br><span class="line">      <span class="comment">//配置邮箱信息</span></span><br><span class="line">      <span class="type">Properties</span> <span class="variable">props</span> <span class="operator">=</span> System.getProperties();</span><br><span class="line">      <span class="comment">//邮件服务器</span></span><br><span class="line">      props.setProperty(<span class="string">&quot;mail.smtp.host&quot;</span>, <span class="string">&quot;smtp.qq.com&quot;</span>);</span><br><span class="line">      props.setProperty(<span class="string">&quot;mail.smtp.socketFactory.class&quot;</span>, SSL_FACTORY);</span><br><span class="line">      props.setProperty(<span class="string">&quot;mail.smtp.socketFactory.fallback&quot;</span>, <span class="string">&quot;false&quot;</span>);</span><br><span class="line">      <span class="comment">//邮件服务器端口</span></span><br><span class="line">      props.setProperty(<span class="string">&quot;mail.smtp.port&quot;</span>, <span class="string">&quot;465&quot;</span>);</span><br><span class="line">      props.setProperty(<span class="string">&quot;mail.smtp.socketFactory.port&quot;</span>, <span class="string">&quot;465&quot;</span>);</span><br><span class="line">      <span class="comment">//鉴权信息</span></span><br><span class="line">      props.setProperty(<span class="string">&quot;mail.smtp.auth&quot;</span>, <span class="string">&quot;true&quot;</span>);</span><br><span class="line">      <span class="comment">//建立邮件会话</span></span><br><span class="line">      <span class="type">Session</span> <span class="variable">session</span> <span class="operator">=</span> Session.getDefaultInstance(props, <span class="keyword">new</span> <span class="title class_">Authenticator</span>() &#123;</span><br><span class="line">        <span class="comment">//身份认证</span></span><br><span class="line">        <span class="keyword">protected</span> PasswordAuthentication <span class="title function_">getPasswordAuthentication</span><span class="params">()</span> &#123;</span><br><span class="line">          <span class="comment">//1.账户 授权码</span></span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">PasswordAuthentication</span>(<span class="string">&quot;xxxxxxx@qq.com&quot;</span>, <span class="string">&quot;xxxx&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="comment">//建立邮件对象</span></span><br><span class="line">      <span class="type">MimeMessage</span> <span class="variable">message</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MimeMessage</span>(session);</span><br><span class="line">      <span class="comment">//设置邮件的发件人</span></span><br><span class="line">      message.setFrom(<span class="keyword">new</span> <span class="title class_">InternetAddress</span>(<span class="string">&quot;xxxxxxx@qq.com&quot;</span>));</span><br><span class="line">      <span class="comment">//2.设置邮件的收件人</span></span><br><span class="line">      message.setRecipients(Message.RecipientType.TO, <span class="string">&quot;xxxxxxx@qq.com&quot;</span>);</span><br><span class="line">      <span class="comment">//设置邮件的主题</span></span><br><span class="line">      message.setSubject(<span class="string">&quot;通过javamail发出！！！&quot;</span>);</span><br><span class="line">      <span class="comment">//文本部分</span></span><br><span class="line">      message.setContent(<span class="string">&quot;文本邮件测试&quot;</span>, <span class="string">&quot;text/html;charset=UTF-8&quot;</span>);</span><br><span class="line">      message.saveChanges();</span><br><span class="line">      <span class="comment">//发送邮件</span></span><br><span class="line">      Transport.send(message);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="2-简单算法"><a href="#2-简单算法" class="headerlink" title="2.简单算法"></a>2.简单算法</h2><ul>
+<li><p>选择排序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;len-<span class="number">1</span>;i++)<span class="comment">//不断缩小无序区</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> j=i+<span class="number">1</span>;j&lt;len;j++)<span class="comment">//遍历无序区中元素</span></span><br><span class="line">	&#123;</span><br><span class="line">	<span class="comment">//从无序区中选出一个小的交换</span></span><br><span class="line">		<span class="keyword">if</span> (array[j]&lt;array[i])</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> array[i];</span><br><span class="line">			array[i] = array[j];</span><br><span class="line">			arry[j] = temp;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>冒泡排序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i=len-<span class="number">1</span>;i&gt;<span class="number">0</span>;i--)<span class="comment">//不断缩小无序区</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">0</span>;j&lt;i;j++)<span class="comment">//遍历无序区中元素</span></span><br><span class="line">	&#123;</span><br><span class="line">	<span class="comment">//从无序区中选出一个大的向前冒</span></span><br><span class="line">		<span class="keyword">if</span> (array[j]&gt;array[j+<span class="number">1</span>])</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> array[j];</span><br><span class="line">			array[j] = array[j+<span class="number">1</span>];</span><br><span class="line">			arry[j+<span class="number">1</span>] = temp;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>插入排序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>;i&lt;len-<span class="number">1</span>;i++)<span class="comment">//不断缩小无序区</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i-<span class="number">1</span>;</span><br><span class="line">	<span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> array[i];</span><br><span class="line">	<span class="comment">//从无序区中将目标插入合适位置</span></span><br><span class="line">	<span class="keyword">while</span> (j&gt;=<span class="number">0</span> &amp;&amp; array[j]&gt;array[i])</span><br><span class="line">	&#123;</span><br><span class="line">		array[j+<span class="number">1</span>] = array[j];</span><br><span class="line">		j--;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>归并排序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span>[] mergeSort(<span class="type">int</span>[] array) &#123;</span><br><span class="line">  <span class="comment">// 为了方便查看结果，我们将每个数组进行打印</span></span><br><span class="line">  <span class="keyword">if</span> (array.length == <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> array;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="type">int</span> <span class="variable">middle</span> <span class="operator">=</span> array.length / <span class="number">2</span>;</span><br><span class="line">  <span class="comment">// 处理 0 到 middle 左侧数组部分</span></span><br><span class="line">  <span class="type">int</span>[] left = mergeSort(subArray(array, <span class="number">0</span>, middle));</span><br><span class="line">  <span class="comment">// 处理 middle 到 array.length 右侧数组部分</span></span><br><span class="line">  <span class="type">int</span>[] right = mergeSort(subArray(array, middle, array.length));</span><br><span class="line">  <span class="comment">// TODO处理合并问题</span></span><br><span class="line">  <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>,j = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> (i &lt; left.length &amp;&amp; j&lt; right.length)&#123;</span><br><span class="line">    <span class="keyword">if</span> (left[i]&lt;right[j])&#123;</span><br><span class="line">      array[i+j] = left[i];</span><br><span class="line">      i++;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      array[i+j] = right[j];</span><br><span class="line">      j++;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span> (i&lt;left.length)&#123;</span><br><span class="line">    array[i+j] = left[i];</span><br><span class="line">    i++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span> (j&lt;right.length)&#123;</span><br><span class="line">    array[i+j] = right[j];</span><br><span class="line">    j++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 拷贝原数组的部分内容，从 left 到 right</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span>[] subArray(<span class="type">int</span>[] source, <span class="type">int</span> left, <span class="type">int</span> right) &#123;</span><br><span class="line">  <span class="comment">// 创建一个新数组</span></span><br><span class="line">  <span class="type">int</span>[] result = <span class="keyword">new</span> <span class="title class_">int</span>[right - left];</span><br><span class="line">  <span class="comment">// 依次赋值进去</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> left; i &lt; right; i++) &#123;</span><br><span class="line">    result[i - left] = source[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://style.youkeda.com/img/course/a1/5/4-2.svg" alt="归并排序"></p>
+</li>
+<li><p>快速排序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 快速排序</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">quickSort</span><span class="params">(<span class="type">int</span>[] array)</span> &#123;</span><br><span class="line">    <span class="comment">// 调用快速排序的核心，传入left，right</span></span><br><span class="line">    quickSortCore(array, <span class="number">0</span>, array.length - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 快速排序的核心，同样也是递归函数</span></span><br><span class="line">    <span class="comment">// 递归基准条件，left &gt;= right 即表示数组只有1个或者0个元素。</span></span><br><span class="line">    <span class="keyword">if</span> (left &gt;= right) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 根据轴分区</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">pivotIndex</span> <span class="operator">=</span> partition(array, left, right);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 递归调用左侧和右侧数组分区</span></span><br><span class="line">    quickSortCore(array, left, pivotIndex - <span class="number">1</span>);</span><br><span class="line">    quickSortCore(array, pivotIndex + <span class="number">1</span>, right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对数组进行分区，并返回当前轴所在的位置</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">partition</span><span class="params">(<span class="type">int</span>[] array, <span class="type">int</span> left, <span class="type">int</span> right)</span> &#123;</span><br><span class="line">	<span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> array[right];</span><br><span class="line">	<span class="type">int</span> <span class="variable">temp_p</span> <span class="operator">=</span> right;</span><br><span class="line">	<span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">		<span class="keyword">while</span> (array[left] &lt;= temp &amp;&amp; left &lt; array.length-<span class="number">1</span>) &#123;</span><br><span class="line">		 left++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span> (array[right] &gt;= temp &amp;&amp; right &gt; <span class="number">0</span>) &#123;</span><br><span class="line">		 right--;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> array[left];</span><br><span class="line">		array[left] = array[right];</span><br><span class="line">		array[right] = index;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (array[left] &gt; temp) &#123;</span><br><span class="line">	array[temp_p] = array[left];</span><br><span class="line">	array[left] = temp;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/a02c25ee737cd9ef749d859f671b045e.gif" alt="快速排序"></p>
+</li>
+<li><p>快速选择</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">QuickSort</span> &#123;</span><br><span class="line">  <span class="comment">// 快速选择，返回选中的元素</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">quickFind</span><span class="params">(<span class="type">int</span>[] array, <span class="type">int</span> aim)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> quickFindCore(array, aim, <span class="number">0</span>, array.length - <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">quickFindCore</span><span class="params">(<span class="type">int</span>[] array, <span class="type">int</span> aim, <span class="type">int</span> left, <span class="type">int</span> right)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (left &gt;= right) &#123;</span><br><span class="line">      <span class="keyword">return</span> array[left];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> <span class="variable">pivotIndex</span> <span class="operator">=</span> partition(array,left,right);</span><br><span class="line">    <span class="keyword">if</span> (pivotIndex == aim) &#123;</span><br><span class="line">      <span class="keyword">return</span> array[pivotIndex];</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (pivotIndex &gt; aim) &#123;</span><br><span class="line">      <span class="keyword">return</span> quickFindCore(array,aim,left,pivotIndex-<span class="number">1</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> quickFindCore(array,aim,pivotIndex+<span class="number">1</span>,right);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">partition</span><span class="params">(<span class="type">int</span>[] array, <span class="type">int</span> left, <span class="type">int</span> right)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> array[right];</span><br><span class="line">    <span class="type">int</span> <span class="variable">temp_p</span> <span class="operator">=</span> right;</span><br><span class="line">    <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">      <span class="keyword">while</span> (array[left] &lt;= temp &amp;&amp; left &lt; array.length - <span class="number">1</span>) &#123;</span><br><span class="line">        left++;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">while</span> (array[right] &gt;= temp &amp;&amp; right &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        right--;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (left &lt; right) &#123;</span><br><span class="line">        swap(array,left,right);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (array[left]&gt;temp) &#123;</span><br><span class="line">      swap(array,left,temp_p);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> left;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span>[] array,<span class="type">int</span> i,<span class="type">int</span> j)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> array[i];</span><br><span class="line">    array[i] = array[j];</span><br><span class="line">    array[j] = index;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>动态规划</p>
+<ul>
+<li>换零钱<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">change</span><span class="params">(Human human)</span>&#123;</span><br><span class="line">       <span class="type">int</span> <span class="variable">amount</span> <span class="operator">=</span> human.amount;</span><br><span class="line">       <span class="type">var</span> <span class="variable">dp</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">int</span>[amount+<span class="number">1</span>];</span><br><span class="line">       <span class="type">int</span>[] array = <span class="built_in">this</span>.smallChanges;</span><br><span class="line">       <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> array.length ;</span><br><span class="line">       <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; dp.length;i++)</span><br><span class="line">       &#123;</span><br><span class="line">           dp[i] = amount+<span class="number">1</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i&lt;=amount;i++)</span><br><span class="line">       &#123;</span><br><span class="line">           <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; len;j++)</span><br><span class="line">           &#123;</span><br><span class="line">               <span class="keyword">if</span> (array[j] &lt;= i)</span><br><span class="line">               &#123;</span><br><span class="line">                   dp[i] = Math.min(dp[i], dp[i - array[j]] + <span class="number">1</span>);</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> dp[amount] &gt; amount ? -<span class="number">1</span>:dp[amount];</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-图云"><a href="#3-图云" class="headerlink" title="3.图云"></a>3.图云</h2>依赖<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;com.kennycason&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;kumo-core&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;<span class="number">1.17</span>&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;!-- 下面tokenizers是为了中文分词引入 --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;com.kennycason&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;kumo-tokenizers&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;<span class="number">1.17</span>&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">generate</span><span class="params">(String artistId, List&lt;String&gt; texts)</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">FrequencyAnalyzer</span> <span class="variable">frequencyAnalyzer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FrequencyAnalyzer</span>();</span><br><span class="line">    <span class="comment">//设置返回的词数</span></span><br><span class="line">    frequencyAnalyzer.setWordFrequenciesToReturn(<span class="number">500</span>);</span><br><span class="line">    <span class="comment">//设置返回的词语最小出现频次</span></span><br><span class="line">    frequencyAnalyzer.setMinWordLength(<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//引入中文解析器</span></span><br><span class="line">    frequencyAnalyzer.setWordTokenizer(<span class="keyword">new</span> <span class="title class_">ChineseWordTokenizer</span>());</span><br><span class="line">    <span class="comment">//输入文章数据，进行分词</span></span><br><span class="line">    <span class="keyword">final</span> List&lt;WordFrequency&gt; wordFrequencyList = frequencyAnalyzer.load(texts);</span><br><span class="line">    <span class="comment">//设置图片分辨率大小</span></span><br><span class="line">    <span class="type">Dimension</span> <span class="variable">dimension</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dimension</span>(<span class="number">600</span>, <span class="number">600</span>);</span><br><span class="line">    <span class="comment">//此处的设置采用内置常量即可，生成词云对象</span></span><br><span class="line">    <span class="type">WordCloud</span> <span class="variable">wordCloud</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">WordCloud</span>(dimension, CollisionMode.PIXEL_PERFECT);</span><br><span class="line">    <span class="comment">//设置边界及字体</span></span><br><span class="line">    wordCloud.setPadding(<span class="number">2</span>);</span><br><span class="line">    <span class="comment">// 设置字体，字体必须支持中文，不能随便改</span></span><br><span class="line">    wordCloud.setKumoFont(<span class="keyword">new</span> <span class="title class_">KumoFont</span>(<span class="string">&quot;阿里巴巴普惠体 Light&quot;</span>, FontWeight.PLAIN));</span><br><span class="line">    <span class="comment">//ColorPalette是调色板，用于设置词云显示的多种颜色，越靠前设置表示词频越高的词语的颜色</span></span><br><span class="line">    wordCloud.setColorPalette(</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">ColorPalette</span>(<span class="keyword">new</span> <span class="title class_">Color</span>(<span class="number">0x4055F1</span>), <span class="keyword">new</span> <span class="title class_">Color</span>(<span class="number">0x408DF1</span>), <span class="keyword">new</span> <span class="title class_">Color</span>(<span class="number">0x40AAF1</span>),</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">Color</span>(<span class="number">0x40C5F1</span>), <span class="keyword">new</span> <span class="title class_">Color</span>(<span class="number">0x40D3F1</span>), <span class="keyword">new</span> <span class="title class_">Color</span>(<span class="number">0xFFFFFF</span>)));</span><br><span class="line">    wordCloud.setFontScalar(<span class="keyword">new</span> <span class="title class_">SqrtFontScalar</span>(<span class="number">10</span>, <span class="number">70</span>));</span><br><span class="line">    <span class="comment">//设置背景图层为圆形</span></span><br><span class="line">    wordCloud.setBackground(<span class="keyword">new</span> <span class="title class_">CircleBackground</span>(<span class="number">300</span>));</span><br><span class="line">    <span class="comment">//生成词云</span></span><br><span class="line">    wordCloud.build(wordFrequencyList);</span><br><span class="line">    <span class="comment">//输出到图片文件，用当前的毫秒数作为文件名</span></span><br><span class="line">    <span class="type">Long</span> <span class="variable">milliSecond</span> <span class="operator">=</span> LocalDateTime.now().toInstant(ZoneOffset.of(<span class="string">&quot;+8&quot;</span>)).toEpochMilli();</span><br><span class="line">    <span class="comment">//输出到图片文件</span></span><br><span class="line">    wordCloud.writeToFile(<span class="string">&quot;wordCloud-&quot;</span> + artistId + <span class="string">&quot;.png&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="JAVA基础"><a href="#JAVA基础" class="headerlink" title="JAVA基础"></a>JAVA基础</h2><h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><ul>
+<li><p>一个类可以通过继承接口的方式，来继承接口的抽象方法。</p>
+</li>
+<li><p>接口无法被实例化，但可以被实现。实现一个接口的类，必须实现接口内的所有方法，否则必须声明抽象类。</p>
+</li>
+<li><p>接口类型可以用来声明一个变量，可以成为空指针或被绑定在一个以此接口实现的对象。</p>
+<h4 id="特性："><a href="#特性：" class="headerlink" title="特性："></a>特性：</h4></li>
+<li><p>接口是隐式抽象的，当声明一个接口的时候，不必使用abstract关键字。</p>
+</li>
+<li><p>接口中每一个方法也是隐式抽象的，声明时同样不需要abstract关键字。</p>
+</li>
+<li><p>接口中的方法都是公有的。</p>
+<h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4></li>
+<li><p>一个接口能继承另一个接口。</p>
+</li>
+<li><p>允许多继承</p>
+<h4 id="标记接口"><a href="#标记接口" class="headerlink" title="标记接口"></a>标记接口</h4></li>
+<li><p><strong>给对象标记，时对象拥有某个或某些特权</strong>*</p>
+</li>
+<li><p>最常用的为没有任何方法的接口</p>
+</li>
+<li><p>没有任何属性和方法，它仅仅表明它的类属于一个特定的类型，供其他代码来测试允许做一些事情</p>
+</li>
+</ul>
+<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><p><em><strong>一个类中没有包含足够信息来描绘一个具体的对象的类为抽象类</strong></em></p>
+<ul>
+<li>不能被实例化，因此必须被继承才能使用（一个类只能继承一个抽象类）</li>
+<li>用<code>abstract class</code>来定义抽象类<h4 id="抽象方法"><a href="#抽象方法" class="headerlink" title="抽象方法"></a>抽象方法</h4></li>
+<li>用<code>abstract</code>来定义</li>
+<li>在父类中声明该方法为抽象方法，具体实现在子类中确认。</li>
+<li>子类必须重写父类的抽象方法或者声明自身为抽象类</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/blog/2023/03/22/java/">展开全文 >></a>
         </p>
       
 
