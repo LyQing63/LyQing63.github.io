@@ -63,7 +63,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 2
+			总文章数 4
 		</nav>		
 		<nav class="header-smart-menu">
     		
@@ -157,6 +157,183 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-AOP-注解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/03/23/ba85df598f12/">AOP-注解</a>
+    </h1>
+  
+
+        
+        <a href="/2023/03/23/ba85df598f12/" class="archive-article-date">
+  	<time datetime="2023-03-23T12:48:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-23</time>
+	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-aop<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>6.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-aspects<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>6.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="spring文件配置"><a href="#spring文件配置" class="headerlink" title="spring文件配置"></a>spring文件配置</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">&quot;http://www.springframework.org/schema/context&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:aop</span>=<span class="string">&quot;http://www.springframework.org/schema/aop&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/context/spring-context.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/aop</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/aop/spring-aop.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">            基于注解的AOP的实现：</span></span><br><span class="line"><span class="comment">            1、将目标对象和切面交给IOC容器管理（注解+扫描）</span></span><br><span class="line"><span class="comment">            2、开启AspectJ的自动代理，为目标对象自动生成代理</span></span><br><span class="line"><span class="comment">            3、将切面类通过注解@Aspect标识</span></span><br><span class="line"><span class="comment">        --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;org.LyQing.annoaop&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:aspectj-autoproxy</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="切面类"><a href="#切面类" class="headerlink" title="切面类"></a>切面类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.*;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 切面类</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="meta">@Aspect</span>    <span class="comment">// 切面类</span></span><br><span class="line"><span class="meta">@Component</span> <span class="comment">// 表示在ioc容器中管理</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LogAspect</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置切入点和通知类型</span></span><br><span class="line">    <span class="comment">//切入点表达式：execution(访问修饰符 增强方法返回类型 增强方法类全路径.方法名(参数))</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//前置 @Before(value = &quot;切入点表达式&quot;)</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before(value = &quot;execution(public * org.LyQing.annoaop.CalculatorImpl.*(..))&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">BeforeMethod</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Logger--&gt;前置通知&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回 @AfterReturning</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@AfterReturning(value = &quot;execution(public int org.LyQing.annoaop.CalculatorImpl.*(..))&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">AfterReturningMethod</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Logger--&gt;返回通知&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//异常 @AfterThrowing</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@AfterThrowing(value = &quot;execution(public int org.LyQing.annoaop.CalculatorImpl.*(..))&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">AfterThrowingMethod</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Logger--&gt;异常通知&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//后置 @After()</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@After(value = &quot;execution(public int org.LyQing.annoaop.CalculatorImpl.*(..))&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">AfterMethod</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Logger--&gt;后置通知&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//环绕 @Around()</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Around(value = &quot;execution(public int org.LyQing.annoaop.CalculatorImpl.*(..))&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">AroundMethod</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Logger--&gt;环绕通知&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><ul>
+<li><p><code>ClassPathXmlApplicationContext</code>指定xml文件，搞错实现类会使得bean对象无法注入</p>
+</li>
+<li><p>实现类一定要有 <code>@Component</code> 注释，否则会护法创建bean对象，并且不能放在接口上</p>
+</li>
+<li><p>增强的方法放回类型在null下有意义，当切面类方法是void时，会返回null，否则返回<code>method.invoke</code>，所以基本类型需要用封装类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.aop.AopInvocationException: Null return value from advice does not match primitive return type for: public abstract int org.LyQing.annoaop.Calculator.add(int,int)</span><br><span class="line"></span><br><span class="line">	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:232)</span><br><span class="line">	at jdk.proxy2/jdk.proxy2.$Proxy21.add(Unknown Source)</span><br><span class="line">	at org.LyQing.annoaop.AOPTest.AddTest(AOPTest.java:14)</span><br><span class="line">	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)</span><br><span class="line">	at java.base/java.lang.reflect.Method.invoke(Method.java:578)</span><br><span class="line">	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)</span><br><span class="line">	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)</span><br><span class="line">	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)</span><br><span class="line">	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)</span><br><span class="line">	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)</span><br><span class="line">	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)</span><br><span class="line">	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)</span><br><span class="line">	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)</span><br><span class="line">	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)</span><br><span class="line">	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)</span><br><span class="line">	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)</span><br><span class="line">	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)</span><br><span class="line">	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)</span><br><span class="line">	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)</span><br><span class="line">	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)</span><br><span class="line">	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)</span><br><span class="line">	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)</span><br><span class="line">	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69)</span><br><span class="line">	at com.intellij.rt.junit.IdeaTestRunner$Repeater$1.execute(IdeaTestRunner.java:38)</span><br><span class="line">	at com.intellij.rt.execution.junit.TestsRepeater.repeat(TestsRepeater.java:11)</span><br><span class="line">	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)</span><br><span class="line">	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:235)</span><br><span class="line">	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54)</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/03/23/ba85df598f12/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-动态代理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/03/23/cea4a85ad2bf/">动态代理</a>
+    </h1>
+  
+
+        
+        <a href="/2023/03/23/cea4a85ad2bf/" class="archive-article-date">
+  	<time datetime="2023-03-23T12:35:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-23</time>
+	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul>
+<li>代理对象拥有接口时使用<code>JDK代理</code></li>
+<li>代理对象没有接口时使用<code>cglib代理</code></li>
+</ul>
+<h3 id="JDK代理"><a href="#JDK代理" class="headerlink" title="JDK代理"></a>JDK代理</h3><p>生成接口实现类对象代理</p>
+<h3 id="cglib代理"><a href="#cglib代理" class="headerlink" title="cglib代理"></a>cglib代理</h3><p>生成子类代理对象</p>
+<h3 id="AspectJ"><a href="#AspectJ" class="headerlink" title="AspectJ"></a>AspectJ</h3><p>是一个AOP的框架，Spring使用到AspectJ的注解，本质上是一个静态代理</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/03/23/cea4a85ad2bf/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-AOP-概念" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -507,7 +684,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">&lt;br&gt;邮专在读学生&lt;/br&gt;</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">&lt;br&gt;邮专在读学生&lt;/br&gt;&lt;br&gt;主攻Java&lt;/br&gt;</div>
   	  	
     	</section>
     
