@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="https://LyQing63.github.io">
   <title>MySQL | LyQing | 个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="灵檠的博客">
+  <meta name="description" content="MySQL数据库分类 层次式数据库 网络式数据库 关系型数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL">
 <meta property="og:url" content="https://lyqing63.github.io/2023/03/27/bc6c2c23a025/index.html">
 <meta property="og:site_name" content="LyQing | 个人博客">
-<meta property="og:description" content="灵檠的博客">
+<meta property="og:description" content="MySQL数据库分类 层次式数据库 网络式数据库 关系型数据库">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-27T11:41:59.000Z">
-<meta property="article:modified_time" content="2023-03-27T11:41:59.719Z">
+<meta property="article:modified_time" content="2023-03-28T11:56:36.426Z">
 <meta property="article:author" content="LyQing63">
-<meta property="article:tag" content="Java">
+<meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="LyQing | 个人博客" type="application/atom+xml">
@@ -179,7 +179,115 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><h3 id="数据库分类"><a href="#数据库分类" class="headerlink" title="数据库分类"></a>数据库分类</h3><ul>
+<li>层次式数据库</li>
+<li>网络式数据库</li>
+<li>关系型数据库<span id="more"></span>
+<blockquote>
+<p>MySQL是一种关系型数据库</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>关系式数据库</strong>：把复杂的数据结构归结为简单的二元关系（二维表格形式）。</p>
+<p><strong>NoSQL</strong>：即非关系型数据库，不保证ACID特性。如Redis和MongoDB</p>
+<h3 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h3><p>即Structured Query Language (结构化查询语言)</p>
+<h3 id="表格结构"><a href="#表格结构" class="headerlink" title="表格结构"></a>表格结构</h3><ul>
+<li>表名：即表格名，多个单词用<code>_</code>分割</li>
+<li>字段：表格中每一列都是一个字段，不能出现同名字段，但字段值可以为<code>NULL</code></li>
+<li>主键：表格可以没有主键，但最多只能有一个主键，主键值不能为<code>NULL</code>，且必须唯一，常用于数据的编号</li>
+</ul>
+<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><ul>
+<li>VARCHAR：类似于String类型，可变字符串。</li>
+<li>INT：整形，与int类型一致</li>
+<li>DOUBLE：浮点型，与double类型一致，但不加长度限制</li>
+<li>DATETIME：事件类型，长度为0，格式为YYYY-MM-DD HH:MM:SS</li>
+<li>BIGINT：长整型，与long类型一致</li>
+</ul>
+<blockquote>
+<p>表格中采用键值对的方式来操作数据</p>
+</blockquote>
+<h3 id="CRUD"><a href="#CRUD" class="headerlink" title="CRUD"></a>CRUD</h3><ul>
+<li>C：Create，创建</li>
+<li>R：Read，读取</li>
+<li>U：Update，更新</li>
+<li>D：Delete，删除</li>
+</ul>
+<h4 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h4><p>一个表格的创建</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE `user`(</span><br><span class="line">`id` INT(10)NOT NULL,</span><br><span class="line">`mobile` VARCHAR(11) NOT NULL,</span><br><span class="line">`nickname` VARCHAR(40) NOT NULL,</span><br><span class="line">`gmt_created` datetime ,</span><br><span class="line">`gmt_modified` datetime NOT NULL,</span><br><span class="line">PRIMARY KEY ( `id` )</span><br><span class="line">)ENGINE=InnoDB DEFAULT CHARSET=utf8;</span><br></pre></td></tr></table></figure>
+
+<h5 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE user;</span><br></pre></td></tr></table></figure>
+
+<h5 id="创建表格"><a href="#创建表格" class="headerlink" title="创建表格"></a>创建表格</h5><p>创建一个名叫<code>user</code>的表格</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE  `user`()</span><br></pre></td></tr></table></figure>
+
+<h5 id="创建字段"><a href="#创建字段" class="headerlink" title="创建字段"></a>创建字段</h5><p>语法为：字段名+数据类型+长度+是否为NULL</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">`id` INT(10)NOT NULL,</span><br><span class="line">`mobile` VARCHAR(11) NOT NULL,</span><br><span class="line">`nickname` VARCHAR(40) NOT NULL,</span><br><span class="line">`gmt_created` datetime ,</span><br><span class="line">`gmt_modified` datetime NOT NULL,</span><br></pre></td></tr></table></figure>
+
+<h5 id="约定主键"><a href="#约定主键" class="headerlink" title="约定主键"></a>约定主键</h5><p>最大作用是标识，最好是由计算机生成，人工不干预主键生成的值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PRIMARY KEY ( `id` )</span><br></pre></td></tr></table></figure>
+
+<p>有时会把INT类型的主键语句改为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`id` INT UNSIGNED AUTO_INCREMENT</span><br></pre></td></tr></table></figure>
+<p>id会从1开始自增</p>
+<h5 id="设置存储引擎和编码方式"><a href="#设置存储引擎和编码方式" class="headerlink" title="设置存储引擎和编码方式"></a>设置存储引擎和编码方式</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ENGINE=InnoDB DEFAULT CHARSET=utf8</span><br></pre></td></tr></table></figure>
+<h5 id="删除表格"><a href="#删除表格" class="headerlink" title="删除表格"></a>删除表格</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop table table_name;</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE IF EXISTS table_name;</span><br></pre></td></tr></table></figure>
+
+<h4 id="处理"><a href="#处理" class="headerlink" title="处理"></a>处理</h4><h5 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h5><p>插入数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO table_name(field1,field2,...fieldN)</span><br><span class="line">VALUES</span><br><span class="line">(value1,value2,...valueN);</span><br></pre></td></tr></table></figure>
+<p>例子</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO</span><br><span class="line">  `user` (`id`, `mobile`, `nickname`, `gmt_created`)</span><br><span class="line">VALUES</span><br><span class="line">  (1, &#x27;13423412314&#x27;, &#x27;蔡徐坤&#x27;, now());</span><br></pre></td></tr></table></figure>
+
+<h5 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h5><p>查询数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT field1,field2,.... FROM table_name;</span><br></pre></td></tr></table></figure>
+<p>可以用<code>*</code>表示全部</p>
+<ul>
+<li><p>WHERE 子句</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM table_name WHERE condition;</span><br></pre></td></tr></table></figure>
+<p>condition: 条件语句<br>例子</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">  *</span><br><span class="line">FROM</span><br><span class="line">  timi_adc</span><br><span class="line">where</span><br><span class="line">  win_rate &gt; 0.5;</span><br></pre></td></tr></table></figure></li>
+<li><p>Limit子句</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM table_name LIMIT parameter;</span><br></pre></td></tr></table></figure>
+<p>parameter有多种情况</p>
+</li>
+</ul>
+<ol>
+<li>查询第x-y行<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">  *</span><br><span class="line">FROM</span><br><span class="line">  timi_adc</span><br><span class="line">LIMIT</span><br><span class="line">  5, 6;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">2. 查询0-x行</span><br><span class="line">```MySQL</span><br><span class="line">SELECT</span><br><span class="line">  *</span><br><span class="line">FROM</span><br><span class="line">  timi_adc</span><br><span class="line">LIMIT</span><br><span class="line">  5;</span><br></pre></td></tr></table></figure>
+表示查询从0开始的5条数据</li>
+<li>查询第x行数据<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">  *</span><br><span class="line">FROM</span><br><span class="line">  timi_adc</span><br><span class="line">LIMIT</span><br><span class="line">  4, 1;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p>可以与where语句联合使用,发挥出奇效,做到筛选的效果</p>
+</blockquote>
+<h5 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h5><p>可以对数据以指定字段进行排序</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM table_name ORDER BY field_name;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>DESC 关键词<figure class="highlight plaintext"><figcaption><span>BY```语句排序的顺序是正序排序,关键词为(ASC,一般不写出来)。可以通过添加关键词```DESC```使得排序变成逆序</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">如</span><br><span class="line">```MySQL</span><br><span class="line">SELECT</span><br><span class="line">  *</span><br><span class="line">FROM</span><br><span class="line">  timi_adc</span><br><span class="line">ORDER BY</span><br><span class="line">  win_rate DESC;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="更新-删除"><a href="#更新-删除" class="headerlink" title="更新/删除"></a>更新/删除</h5><ul>
+<li><p>UPDATE</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>若不增加WHERE语句限制,则会对整列起作用</p>
+</blockquote>
+</li>
+<li><p>DELETE</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM table_name [WHERE Clause]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>删除语句是不可回复的,因此务必加上WHERE语句,否则会将整张表的数据删除</p>
+</blockquote>
+</li>
+</ul>
+<p>例案:</p>
+<ul>
+<li>删除<code>user</code>表中<code>id</code>为<code>4</code>的行<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from user where id=4;</span><br></pre></td></tr></table></figure></li>
+<li>删除<code>user</code>表中<code>id</code>小于<code>20</code>的行<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from user where id&lt;20;</span><br></pre></td></tr></table></figure></li>
+<li>删除<code>user</code>表中所有数据<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from user;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
       
 
       
@@ -208,6 +316,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -301,7 +420,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL"><span class="toc-number">1.</span> <span class="toc-text">MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%86%E7%B1%BB"><span class="toc-number">1.1.</span> <span class="toc-text">数据库分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL"><span class="toc-number">1.2.</span> <span class="toc-text">SQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E7%BB%93%E6%9E%84"><span class="toc-number">1.3.</span> <span class="toc-text">表格结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.1.</span> <span class="toc-text">数据类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CRUD"><span class="toc-number">1.4.</span> <span class="toc-text">CRUD</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA"><span class="toc-number">1.4.1.</span> <span class="toc-text">创建</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">创建数据库</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%A1%A8%E6%A0%BC"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">创建表格</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AD%97%E6%AE%B5"><span class="toc-number">1.4.1.3.</span> <span class="toc-text">创建字段</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BA%A6%E5%AE%9A%E4%B8%BB%E9%94%AE"><span class="toc-number">1.4.1.4.</span> <span class="toc-text">约定主键</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E5%92%8C%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F"><span class="toc-number">1.4.1.5.</span> <span class="toc-text">设置存储引擎和编码方式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%A1%A8%E6%A0%BC"><span class="toc-number">1.4.1.6.</span> <span class="toc-text">删除表格</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%84%E7%90%86"><span class="toc-number">1.4.2.</span> <span class="toc-text">处理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8F%92%E5%85%A5"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">插入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-number">1.4.2.3.</span> <span class="toc-text">排序</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0-%E5%88%A0%E9%99%A4"><span class="toc-number">1.4.2.4.</span> <span class="toc-text">更新&#x2F;删除</span></a></li></ol></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -436,6 +555,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
             
             <div class="clearfix"></div>
