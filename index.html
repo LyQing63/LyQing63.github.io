@@ -63,7 +63,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 7
+			总文章数 8
 		</nav>		
 		<nav class="header-smart-menu">
     		
@@ -158,7 +158,102 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-MySQL" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JDBC-事务"
+  class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/03/29/4f71ab01aaac/">JDBC-事务</a>
+    </h1>
+  
+
+          <!--显示阅读次数-->
+          
+              <!--显示阅读次数完毕-->
+              
+                <a href="/2023/03/29/4f71ab01aaac/" class="archive-article-date">
+  	<time datetime="2023-03-29T07:14:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-29</time>
+	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+</a>
+                  
+      </header>
+      
+        <div class="article-entry" itemprop="articleBody">
+          
+                    <h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>不可分割的一个工作单位，要么操作全部执行，要么全部不执行</p>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ul>
+<li>原子性-A：(Atomicity) 一个事务中的所有操作要么全部执行，若过程中出现错误，会回滚(Rollback) 和没执行一样</li>
+<li>一致性-C：(Consistency) 事务执行之前和之后的数据库斗必须处于一致性状态，如果事务成功执行，那么系统所有变化都将正确的应用；若出现错误，那么系统所有的变化都将回滚</li>
+<li>隔离性-I：(Isolation) 多个事务操作时互相没有影响，只有在事务提交后，事务才会呈现影响后的状态</li>
+<li>持久性-D：(Durability) 事务提交表中数据后就真正生效</li>
+</ul>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul>
+<li>编程式事务</li>
+<li>声明式事务</li>
+</ul>
+
+                      
+
+                        
+        </div>
+        <div class="article-info article-info-index">
+          
+              
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+                
+
+                  
+                    <p class="article-more-link">
+                      <a class="article-more-a" href="/2023/03/29/4f71ab01aaac/">
+                        展开全文 >>
+                      </a>
+                    </p>
+                    
+
+                      
+                            <div class="clearfix"></div>
+        </div>
+  </div>
+</article>
+
+      <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+        
+  
+    <article id="post-MySQL"
+  class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -169,31 +264,31 @@
     </h1>
   
 
-        <!--显示阅读次数-->
-
-<!--显示阅读次数完毕-->
-        
-        <a href="/2023/03/27/bc6c2c23a025/" class="archive-article-date">
+          <!--显示阅读次数-->
+          
+              <!--显示阅读次数完毕-->
+              
+                <a href="/2023/03/27/bc6c2c23a025/" class="archive-article-date">
   	<time datetime="2023-03-27T11:41:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-27</time>
 	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
 </a>
-        
+                  
       </header>
-    
-    <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><h3 id="数据库分类"><a href="#数据库分类" class="headerlink" title="数据库分类"></a>数据库分类</h3><ul>
+        <div class="article-entry" itemprop="articleBody">
+          
+            <h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><h3 id="数据库分类"><a href="#数据库分类" class="headerlink" title="数据库分类"></a>数据库分类</h3><ul>
 <li>层次式数据库</li>
 <li>网络式数据库</li>
 <li>关系型数据库
-        
-      
+              
+                  
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+                        
+        </div>
+        <div class="article-info article-info-index">
+          
+              
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -205,21 +300,23 @@
 		</ul>
 	</div>
 
-      
+                
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/03/27/bc6c2c23a025/">展开全文 >></a>
-        </p>
-      
+                  
+                    <p class="article-more-link">
+                      <a class="article-more-a" href="/2023/03/27/bc6c2c23a025/">
+                        展开全文 >>
+                      </a>
+                    </p>
+                    
 
-      
-      <div class="clearfix"></div>
-    </div>
+                      
+                            <div class="clearfix"></div>
+        </div>
   </div>
 </article>
 
-<aside class="wrap-side-operation">
+      <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -236,42 +333,42 @@
 </aside>
 
 
-
-
+        
   
-    <article id="post-JDBC" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JDBC-Template"
+  class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/03/27/2606e4c633cc/">JDBC</a>
+      <a class="article-title" href="/2023/03/27/dec65bdb09e8/">JDBC-Template</a>
     </h1>
   
 
-        <!--显示阅读次数-->
-
-<!--显示阅读次数完毕-->
-        
-        <a href="/2023/03/27/2606e4c633cc/" class="archive-article-date">
+          <!--显示阅读次数-->
+          
+              <!--显示阅读次数完毕-->
+              
+                <a href="/2023/03/27/dec65bdb09e8/" class="archive-article-date">
   	<time datetime="2023-03-27T11:17:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-27</time>
 	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
 </a>
-        
+                  
       </header>
-    
-    <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Spring 框架对JDBC进行封装，使用JdbcTemplate可以方便实现对数据库的操作</p>
-        
-      
+        <div class="article-entry" itemprop="articleBody">
+          
+            <h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Spring 框架对JDBC进行封装，使用JdbcTemplate可以方便实现对数据库的操作</p>
+              
+                  
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+                        
+        </div>
+        <div class="article-info article-info-index">
+          
+              
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -287,21 +384,23 @@
 		</ul>
 	</div>
 
-      
+                
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/03/27/2606e4c633cc/">展开全文 >></a>
-        </p>
-      
+                  
+                    <p class="article-more-link">
+                      <a class="article-more-a" href="/2023/03/27/dec65bdb09e8/">
+                        展开全文 >>
+                      </a>
+                    </p>
+                    
 
-      
-      <div class="clearfix"></div>
-    </div>
+                      
+                            <div class="clearfix"></div>
+        </div>
   </div>
 </article>
 
-<aside class="wrap-side-operation">
+      <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -318,10 +417,10 @@
 </aside>
 
 
-
-
+        
   
-    <article id="post-AOP-XML" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-AOP-XML"
+  class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -332,28 +431,28 @@
     </h1>
   
 
-        <!--显示阅读次数-->
-
-<!--显示阅读次数完毕-->
-        
-        <a href="/2023/03/27/20246e0d7ba4/" class="archive-article-date">
+          <!--显示阅读次数-->
+          
+              <!--显示阅读次数完毕-->
+              
+                <a href="/2023/03/27/20246e0d7ba4/" class="archive-article-date">
   	<time datetime="2023-03-27T08:51:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-27</time>
 	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
 </a>
-        
+                  
       </header>
-    
-    <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="xml文件配置"><a href="#xml文件配置" class="headerlink" title="xml文件配置"></a>xml文件配置</h3><p>接下来是用xml文件进行AOP配置</p>
-        
-      
+        <div class="article-entry" itemprop="articleBody">
+          
+            <h3 id="xml文件配置"><a href="#xml文件配置" class="headerlink" title="xml文件配置"></a>xml文件配置</h3><p>接下来是用xml文件进行AOP配置</p>
+              
+                  
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+                        
+        </div>
+        <div class="article-info article-info-index">
+          
+              
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -369,21 +468,23 @@
 		</ul>
 	</div>
 
-      
+                
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/03/27/20246e0d7ba4/">展开全文 >></a>
-        </p>
-      
+                  
+                    <p class="article-more-link">
+                      <a class="article-more-a" href="/2023/03/27/20246e0d7ba4/">
+                        展开全文 >>
+                      </a>
+                    </p>
+                    
 
-      
-      <div class="clearfix"></div>
-    </div>
+                      
+                            <div class="clearfix"></div>
+        </div>
   </div>
 </article>
 
-<aside class="wrap-side-operation">
+      <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -400,10 +501,10 @@
 </aside>
 
 
-
-
+        
   
-    <article id="post-AOP-注解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-AOP-注解"
+  class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -414,28 +515,28 @@
     </h1>
   
 
-        <!--显示阅读次数-->
-
-<!--显示阅读次数完毕-->
-        
-        <a href="/2023/03/23/ba85df598f12/" class="archive-article-date">
+          <!--显示阅读次数-->
+          
+              <!--显示阅读次数完毕-->
+              
+                <a href="/2023/03/23/ba85df598f12/" class="archive-article-date">
   	<time datetime="2023-03-23T12:48:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-23</time>
 	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
 </a>
-        
+                  
       </header>
-    
-    <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-aop<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>6.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-aspects<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>6.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-        
-      
+        <div class="article-entry" itemprop="articleBody">
+          
+            <h3 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-aop<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>6.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-aspects<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>6.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+              
+                  
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+                        
+        </div>
+        <div class="article-info article-info-index">
+          
+              
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -451,21 +552,23 @@
 		</ul>
 	</div>
 
-      
+                
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/03/23/ba85df598f12/">展开全文 >></a>
-        </p>
-      
+                  
+                    <p class="article-more-link">
+                      <a class="article-more-a" href="/2023/03/23/ba85df598f12/">
+                        展开全文 >>
+                      </a>
+                    </p>
+                    
 
-      
-      <div class="clearfix"></div>
-    </div>
+                      
+                            <div class="clearfix"></div>
+        </div>
   </div>
 </article>
 
-<aside class="wrap-side-operation">
+      <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -482,10 +585,10 @@
 </aside>
 
 
-
-
+        
   
-    <article id="post-动态代理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-动态代理"
+  class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -496,30 +599,30 @@
     </h1>
   
 
-        <!--显示阅读次数-->
-
-<!--显示阅读次数完毕-->
-        
-        <a href="/2023/03/23/cea4a85ad2bf/" class="archive-article-date">
+          <!--显示阅读次数-->
+          
+              <!--显示阅读次数完毕-->
+              
+                <a href="/2023/03/23/cea4a85ad2bf/" class="archive-article-date">
   	<time datetime="2023-03-23T12:35:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-23</time>
 	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
 </a>
-        
+                  
       </header>
-    
-    <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul>
+        <div class="article-entry" itemprop="articleBody">
+          
+            <h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul>
 <li>代理对象拥有接口时使用<code>JDK代理</code></li>
 <li>代理对象没有接口时使用<code>cglib代理</code>
-        
-      
+              
+                  
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+                        
+        </div>
+        <div class="article-info article-info-index">
+          
+              
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -535,21 +638,23 @@
 		</ul>
 	</div>
 
-      
+                
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/03/23/cea4a85ad2bf/">展开全文 >></a>
-        </p>
-      
+                  
+                    <p class="article-more-link">
+                      <a class="article-more-a" href="/2023/03/23/cea4a85ad2bf/">
+                        展开全文 >>
+                      </a>
+                    </p>
+                    
 
-      
-      <div class="clearfix"></div>
-    </div>
+                      
+                            <div class="clearfix"></div>
+        </div>
   </div>
 </article>
 
-<aside class="wrap-side-operation">
+      <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -566,10 +671,10 @@
 </aside>
 
 
-
-
+        
   
-    <article id="post-AOP-概念" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-AOP-概念"
+  class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -580,30 +685,30 @@
     </h1>
   
 
-        <!--显示阅读次数-->
-
-<!--显示阅读次数完毕-->
-        
-        <a href="/2023/03/23/beb57a5d0f40/" class="archive-article-date">
+          <!--显示阅读次数-->
+          
+              <!--显示阅读次数完毕-->
+              
+                <a href="/2023/03/23/beb57a5d0f40/" class="archive-article-date">
   	<time datetime="2023-03-23T05:29:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-23</time>
 	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
 </a>
-        
+                  
       </header>
-    
-    <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h2><p>AOP简单来说就是再不修改源代码的情况放下，动态地给程序统一添加额外功能的一种技术。是一种设计思想，是面向对象编程的一种补充和完善。</p>
+        <div class="article-entry" itemprop="articleBody">
+          
+            <h2 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h2><p>AOP简单来说就是再不修改源代码的情况放下，动态地给程序统一添加额外功能的一种技术。是一种设计思想，是面向对象编程的一种补充和完善。</p>
 <ul>
 <li>作用：可以隔离业务逻辑的各个部分，使得业务逻辑各部分之间的耦合度降低，提高程序的可重用性，同时提高开发效率
-        
-      
+              
+                  
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+                        
+        </div>
+        <div class="article-info article-info-index">
+          
+              
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -619,21 +724,23 @@
 		</ul>
 	</div>
 
-      
+                
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/03/23/beb57a5d0f40/">展开全文 >></a>
-        </p>
-      
+                  
+                    <p class="article-more-link">
+                      <a class="article-more-a" href="/2023/03/23/beb57a5d0f40/">
+                        展开全文 >>
+                      </a>
+                    </p>
+                    
 
-      
-      <div class="clearfix"></div>
-    </div>
+                      
+                            <div class="clearfix"></div>
+        </div>
   </div>
 </article>
 
-<aside class="wrap-side-operation">
+      <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -650,10 +757,10 @@
 </aside>
 
 
-
-
+        
   
-    <article id="post-AOP-面向切面(代理篇)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-AOP-面向切面(代理篇)"
+  class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -664,34 +771,34 @@
     </h1>
   
 
-        <!--显示阅读次数-->
-
-<!--显示阅读次数完毕-->
-        
-        <a href="/2023/03/22/5cb271b6acf2/" class="archive-article-date">
+          <!--显示阅读次数-->
+          
+              <!--显示阅读次数完毕-->
+              
+                <a href="/2023/03/22/5cb271b6acf2/" class="archive-article-date">
   	<time datetime="2023-03-22T09:52:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-22</time>
 	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
 </a>
-        
+                  
       </header>
-    
-    <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><ul>
+        <div class="article-entry" itemprop="articleBody">
+          
+            <h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><ul>
 <li>概念</li>
 </ul>
 <ol>
 <li>属于二十三中设计模式中的一种，属于结构式模式。</li>
 <li>它的作用是提供一个<strong>代理类</strong>，使调用方法时，通过代理类间接调用方法。</li>
 <li>它将不属于核心逻辑的代码从目标方法中<strong>解耦</strong>出来
-        
-      
+              
+                  
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+                        
+        </div>
+        <div class="article-info article-info-index">
+          
+              
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -703,21 +810,23 @@
 		</ul>
 	</div>
 
-      
+                
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/03/22/5cb271b6acf2/">展开全文 >></a>
-        </p>
-      
+                  
+                    <p class="article-more-link">
+                      <a class="article-more-a" href="/2023/03/22/5cb271b6acf2/">
+                        展开全文 >>
+                      </a>
+                    </p>
+                    
 
-      
-      <div class="clearfix"></div>
-    </div>
+                      
+                            <div class="clearfix"></div>
+        </div>
   </div>
 </article>
 
-<aside class="wrap-side-operation">
+      <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -734,8 +843,7 @@
 </aside>
 
 
-
-
+        
   
   
 
