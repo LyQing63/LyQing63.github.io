@@ -6,20 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://LyQing63.github.io">
-  <title>AOP-概念 | LyQing | 个人博客</title>
+  <title>spring-MVC(1) | LyQing | 个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="AOPAOP简单来说就是再不修改源代码的情况放下，动态地给程序统一添加额外功能的一种技术。是一种设计思想，是面向对象编程的一种补充和完善。  作用：可以隔离业务逻辑的各个部分，使得业务逻辑各部分之间的耦合度降低，提高程序的可重用性，同时提高开发效率">
+  <meta name="description" content="Spring-MVCMVC概念：MVC是一种软件架构的思想，将软件按照模型、视图、控制器来划分 M：Model，模型层，指工程中的JavaBean，作用是处理数据 JavaBean分为两类：  一类称为实体类Bean：专门存储业务数据的，如 Student、User 等 一类称为业务处理 Bean：指 Service 或 Dao 对象，专门用于处理业务逻辑和数据访问。  V：View，视图层，指工">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AOP-概念">
-<meta property="og:url" content="https://lyqing63.github.io/2023/03/23/beb57a5d0f40/index.html">
+<meta property="og:title" content="spring-MVC(1)">
+<meta property="og:url" content="https://lyqing63.github.io/2023/03/31/c5a0b3534a97/index.html">
 <meta property="og:site_name" content="LyQing | 个人博客">
-<meta property="og:description" content="AOPAOP简单来说就是再不修改源代码的情况放下，动态地给程序统一添加额外功能的一种技术。是一种设计思想，是面向对象编程的一种补充和完善。  作用：可以隔离业务逻辑的各个部分，使得业务逻辑各部分之间的耦合度降低，提高程序的可重用性，同时提高开发效率">
+<meta property="og:description" content="Spring-MVCMVC概念：MVC是一种软件架构的思想，将软件按照模型、视图、控制器来划分 M：Model，模型层，指工程中的JavaBean，作用是处理数据 JavaBean分为两类：  一类称为实体类Bean：专门存储业务数据的，如 Student、User 等 一类称为业务处理 Bean：指 Service 或 Dao 对象，专门用于处理业务逻辑和数据访问。  V：View，视图层，指工">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-03-23T05:29:24.000Z">
-<meta property="article:modified_time" content="2023-03-23T08:17:52.089Z">
+<meta property="article:published_time" content="2023-03-31T00:57:48.000Z">
+<meta property="article:modified_time" content="2023-03-31T01:25:25.671Z">
 <meta property="article:author" content="LyQing63">
 <meta property="article:tag" content="Java">
-<meta property="article:tag" content="spring">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="LyQing | 个人博客" type="application/atom+xml">
@@ -159,7 +158,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-AOP-概念"
+            <article id="post-spring-MVC-1"
   class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -167,7 +166,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      AOP-概念
+      spring-MVC(1)
     </h1>
   
 
@@ -183,8 +182,8 @@
             
               <!--显示阅读次数完毕-->
               
-                <a href="/2023/03/23/beb57a5d0f40/" class="archive-article-date">
-  	<time datetime="2023-03-23T05:29:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-23</time>
+                <a href="/2023/03/31/c5a0b3534a97/" class="archive-article-date">
+  	<time datetime="2023-03-31T00:57:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-31</time>
 	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
 </a>
                   
@@ -192,28 +191,20 @@
       
         <div class="article-entry" itemprop="articleBody">
           
-                    <h2 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h2><p>AOP简单来说就是再不修改源代码的情况放下，动态地给程序统一添加额外功能的一种技术。是一种设计思想，是面向对象编程的一种补充和完善。</p>
+                    <h2 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring-MVC"></a>Spring-MVC</h2><h3 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h3><p>概念：<br>MVC是一种软件架构的思想，将软件按照模型、视图、控制器来划分</p>
+<p>M：Model，模型层，指工程中的JavaBean，作用是处理数据</p>
+<p>JavaBean分为两类：</p>
 <ul>
-<li>作用：可以隔离业务逻辑的各个部分，使得业务逻辑各部分之间的耦合度降低，提高程序的可重用性，同时提高开发效率<span id="more"></span>
-<h3 id="横切关注点"><a href="#横切关注点" class="headerlink" title="横切关注点"></a>横切关注点</h3>分散再各个模块中解决的同样的问题（用户验证，事务处理，数据缓存）。</li>
+<li>一类称为实体类Bean：专门存储业务数据的，如 Student、User 等</li>
+<li>一类称为业务处理 Bean：指 Service 或 Dao 对象，专门用于处理业务逻辑和数据访问。</li>
 </ul>
-<h3 id="通知（增强）"><a href="#通知（增强）" class="headerlink" title="通知（增强）"></a>通知（增强）</h3><p>增强，简单来说就是要增强的功能<br>每一个横切关注点上要做的事需要写一个方法实现，这样的方法加通知方法。</p>
-<ul>
-<li>前置通知：在被代理目标方法前执行</li>
-<li>返回通知：在被代理目标方法<strong>成功结束</strong>执行</li>
-<li>异常通知：在被代理目标方法<strong>异常结束</strong>执行</li>
-<li>后置通知：在被代理目标方法<strong>最终结束</strong>执行</li>
-<li>环绕通知：使用try…catch…finally结构围绕<strong>整个</strong>被代理的目标方法（包括上面四种通知）</li>
-</ul>
-<h3 id="切面"><a href="#切面" class="headerlink" title="切面"></a>切面</h3><p>及封装通知方法的类</p>
-<h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>及<strong>目标对象</strong></p>
-<h3 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h3><p>目标对象应用通知后创建的<strong>代理对象</strong></p>
-<h3 id="连接点"><a href="#连接点" class="headerlink" title="连接点"></a>连接点</h3><p>把方法排成一排，每一个横切看成X轴方向，把方法从上到下执行的顺序看成Y轴，交叉点就是连接点。<br><strong>简单说就是，spring允许通知的地方</strong></p>
-<h3 id="切入点"><a href="#切入点" class="headerlink" title="切入点"></a>切入点</h3><p>spring的AOP技术可以通知切入点定位到的连接点，即<strong>切入点为要实际增强的方法</strong></p>
-<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><ul>
-<li>简化代码：把固定重复的代码抽离，让抽取的方法更专注于自己的核心功能，提高内聚性</li>
-<li>代码增强：把特定功能封装到切面类中，哪里有需要，哪里就套用，被套用了切面逻辑的方法就被切面增强了。</li>
-</ul>
+<p>V：View，视图层，指工程中的html或jsp等页面，作用是与用户进行交互，展示数据</p>
+<p>C：Controller，控制层，指工程中的servlet，作用是接收请求和响应浏览器</p>
+<p>MVC的工作流程：<br>用户通过视图层发送请求到服务器，在服务器中请求被Controller接收，Controller调用相应的Model层处理请求，处理完毕将结果返回到Controller，Controller再根据请求处理的结果找到相应的View视图，渲染数据后最终响应给浏览器</p>
+<h3 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h3><p>是Spring的子项目，SpringMVC是Spring为表述层开发的一套完整的解决方案，基于原生servlet</p>
+<blockquote>
+<p>三层架构分为表述层，业务逻辑层，数据访问层</p>
+</blockquote>
 
                       
 
@@ -251,10 +242,6 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
         		</li>
       		
 		</ul>
@@ -310,7 +297,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://lyqing63.github.io/2023/03/23/beb57a5d0f40/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lyqing63.github.io/2023/03/31/c5a0b3534a97/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -324,18 +311,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2023/03/23/cea4a85ad2bf/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/04/02/ffd705015de2/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          动态代理
+          javaWeb
         
       </div>
     </a>
   
   
-    <a href="/2023/03/22/5cb271b6acf2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">AOP-面向切面(代理篇)</div>
+    <a href="/2023/03/30/8ddaa80ccba0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">AOT</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -362,7 +349,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AOP"><span class="toc-number">1.</span> <span class="toc-text">AOP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%AA%E5%88%87%E5%85%B3%E6%B3%A8%E7%82%B9"><span class="toc-number">1.1.</span> <span class="toc-text">横切关注点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E7%9F%A5%EF%BC%88%E5%A2%9E%E5%BC%BA%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">通知（增强）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%87%E9%9D%A2"><span class="toc-number">1.3.</span> <span class="toc-text">切面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87"><span class="toc-number">1.4.</span> <span class="toc-text">目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%90%86"><span class="toc-number">1.5.</span> <span class="toc-text">代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E7%82%B9"><span class="toc-number">1.6.</span> <span class="toc-text">连接点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%87%E5%85%A5%E7%82%B9"><span class="toc-number">1.7.</span> <span class="toc-text">切入点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8"><span class="toc-number">1.8.</span> <span class="toc-text">作用</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-MVC"><span class="toc-number">1.</span> <span class="toc-text">Spring-MVC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MVC"><span class="toc-number">1.1.</span> <span class="toc-text">MVC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringMVC"><span class="toc-number">1.2.</span> <span class="toc-text">SpringMVC</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -379,8 +366,8 @@
                   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "https://LyQing63.github.io/2023/03/23/beb57a5d0f40/", 
-    sourceId: "AOP-概念",
+    url: "https://LyQing63.github.io/2023/03/31/c5a0b3534a97/", 
+    sourceId: "spring-MVC-1",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };
