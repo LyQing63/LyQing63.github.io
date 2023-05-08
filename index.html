@@ -183,19 +183,9 @@
       
         <div class="article-entry" itemprop="articleBody">
           
-                    <h1 id="doubanFM编写时遇到的问题-Day1"><a href="#doubanFM编写时遇到的问题-Day1" class="headerlink" title="doubanFM编写时遇到的问题-Day1"></a>doubanFM编写时遇到的问题-Day1</h1><h2 id="项目Github地址"><a href="#项目Github地址" class="headerlink" title="项目Github地址"></a>项目Github地址</h2><h2 id="https-github-com-LyQing63-doubanFM"><a href="#https-github-com-LyQing63-doubanFM" class="headerlink" title="https://github.com/LyQing63/doubanFM"></a><a href="">https://github.com/LyQing63/doubanFM</a></h2><p>在编写过程中遇到了即将List集合数据存入MySQL中的问题，MySQL中无法设置集合类型的列。<br>本项目是通过另建一个表来存放相S同某一个对象的List的所有内容，其中设置一列id来映射主表对应的数据。</p>
-<h2 id="MySQL实现"><a href="#MySQL实现" class="headerlink" title="MySQL实现"></a>MySQL实现</h2><p>具体实现:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">create table singer (</span><br><span class="line">    `id` varchar(30) not null ,</span><br><span class="line">    `gmtCreated` datetime ,</span><br><span class="line">    `singerName` varchar(10) not null ,</span><br><span class="line">    `avatar` varchar(50),</span><br><span class="line">    `homepage` varchar(50)</span><br><span class="line">) ENGINE=InnoDB;</span><br><span class="line"></span><br><span class="line">create table singer_similar (</span><br><span class="line">    `singer_id` varchar(30) not null,</span><br><span class="line">    `similar_id` varchar(30) not null</span><br><span class="line">) ENGINE=InnoDB;</span><br></pre></td></tr></table></figure>
-<p>于是实现了List属性的存放。</p>
-<p>但是在mapper接口类中实现增删改查操作会比较麻烦</p>
-<h2 id="Mapper接口中的实现"><a href="#Mapper接口中的实现" class="headerlink" title="Mapper接口中的实现"></a>Mapper接口中的实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Insert(</span></span><br><span class="line"><span class="meta">           &quot;INSERT INTO singer VALUES (#&#123;singer.id&#125;, #&#123;singer.gmtCreated&#125;, #&#123;singer.name&#125;, #&#123;singer.avatar&#125;, #&#123;singer.homepage&#125;)&quot;</span></span><br><span class="line"><span class="meta">   )</span></span><br><span class="line">   <span class="keyword">void</span> <span class="title function_">addSinger</span><span class="params">(<span class="meta">@Param(&quot;singer&quot;)</span> Singer singer)</span>;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Insert(</span></span><br><span class="line"><span class="meta">           &quot;INSERT INTO singer_similar VALUES (#&#123;singerId&#125;, #&#123;similarId&#125;)&quot;</span></span><br><span class="line"><span class="meta">   )</span></span><br><span class="line">   <span class="keyword">void</span> <span class="title function_">addSimilarSinger</span><span class="params">(<span class="meta">@Param(&quot;singerId&quot;)</span> String singerId, <span class="meta">@Param(&quot;similarId&quot;)</span> String similarityId)</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>此处只举了增加数据的例子，其中需要用两次<code>Insert</code>操作分别将List以外以及List数据插入数据库中。</p>
-<p>此前尝试过写在同一个方法中，但是会出现错误：<br>只是设置了<code>singer</code>一个Param，在调用<code>singer.similarSingerIds</code>并进行<code>foreach</code>循环时会出现找不到<code>similarSingerIds</code>对应的Param，从而无法将Mapper注入到Ioc容器的情况。</p>
-<h2 id="ServiceImpl的实现"><a href="#ServiceImpl的实现" class="headerlink" title="ServiceImpl的实现"></a>ServiceImpl的实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> SingerMapper mapper;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addSinger</span><span class="params">(Singer singer)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (getSinger(singer.getId()) == <span class="literal">null</span>) &#123;</span><br><span class="line">            mapper.addSinger(singer);</span><br><span class="line">            List&lt;String&gt; similarSingerIds = singer.getSimilarSingerIds();</span><br><span class="line">            <span class="keyword">for</span> (String similarSingerId : similarSingerIds) &#123;</span><br><span class="line">                mapper.addSimilarSinger(singer.getId(), similarSingerId);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>因为在Mapper中只实现了对单个<code>similarSingerId</code>的插入，所以需要循环将List所有数据进行写入</p>
-
-                      
+            <h1 id="doubanFM编写时遇到的问题-Day1"><a href="#doubanFM编写时遇到的问题-Day1" class="headerlink" title="doubanFM编写时遇到的问题-Day1"></a>doubanFM编写时遇到的问题-Day1</h1><h2 id="项目Github地址"><a href="#项目Github地址" class="headerlink" title="项目Github地址"></a>项目Github地址</h2><h2 id="https-github-com-LyQing63-doubanFM"><a href="#https-github-com-LyQing63-doubanFM" class="headerlink" title="https://github.com/LyQing63/doubanFM"></a><a href="">https://github.com/LyQing63/doubanFM</a></h2><p>在编写过程中遇到了即将List集合数据存入MySQL中的问题，MySQL中无法设置集合类型的列。<br>本项目是通过另建一个表来存放相S同某一个对象的List的所有内容，其中设置一列id来映射主表对应的数据。</p>
+              
+                  
 
                         
         </div>
@@ -1346,11 +1336,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1358,11 +1348,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
             
             <div class="clearfix"></div>
