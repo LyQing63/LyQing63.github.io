@@ -6,20 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://LyQing63.github.io">
-  <title>i18n | LyQing | 个人博客</title>
+  <title>doubanFM更新日志-day4 | LyQing | 个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="i18n(国际化)配置文件命名messages_语言_国家例：LyQing_zh_CN.properties">
+  <meta name="description" content="更新日志-Day4项目Github地址https:&#x2F;&#x2F;github.com&#x2F;LyQing63&#x2F;doubanFM今日实现了user,subject,singer的后端接口  一部分使用了REST风格，一部分使用了传统的@ResponseParam风格。如何form表单提交REST风格的数据未完成。还需努力，之后的前端页面开发以及收藏功能的实现之后再完成。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="i18n">
-<meta property="og:url" content="https://lyqing63.github.io/2023/03/30/eb8caaa459bf/index.html">
+<meta property="og:title" content="doubanFM更新日志-day4">
+<meta property="og:url" content="https://lyqing63.github.io/2023/05/15/b488fae2ecc4/index.html">
 <meta property="og:site_name" content="LyQing | 个人博客">
-<meta property="og:description" content="i18n(国际化)配置文件命名messages_语言_国家例：LyQing_zh_CN.properties">
+<meta property="og:description" content="更新日志-Day4项目Github地址https:&#x2F;&#x2F;github.com&#x2F;LyQing63&#x2F;doubanFM今日实现了user,subject,singer的后端接口  一部分使用了REST风格，一部分使用了传统的@ResponseParam风格。如何form表单提交REST风格的数据未完成。还需努力，之后的前端页面开发以及收藏功能的实现之后再完成。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-03-30T02:33:44.000Z">
-<meta property="article:modified_time" content="2023-03-30T03:01:14.185Z">
+<meta property="article:published_time" content="2023-05-15T12:01:54.000Z">
+<meta property="article:modified_time" content="2023-05-15T12:07:31.198Z">
 <meta property="article:author" content="LyQing63">
 <meta property="article:tag" content="Java">
-<meta property="article:tag" content="Spring">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="LyQing | 个人博客" type="application/atom+xml">
@@ -159,7 +158,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-i18n"
+            <article id="post-doubanFM更新日志-day4"
   class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -167,7 +166,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      i18n
+      doubanFM更新日志-day4
     </h1>
   
 
@@ -183,8 +182,8 @@
             
               <!--显示阅读次数完毕-->
               
-                <a href="/2023/03/30/eb8caaa459bf/" class="archive-article-date">
-  	<time datetime="2023-03-30T02:33:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-30</time>
+                <a href="/2023/05/15/b488fae2ecc4/" class="archive-article-date">
+  	<time datetime="2023-05-15T12:01:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-15</time>
 	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
 </a>
                   
@@ -192,15 +191,10 @@
       
         <div class="article-entry" itemprop="articleBody">
           
-                    <h2 id="i18n-国际化"><a href="#i18n-国际化" class="headerlink" title="i18n(国际化)"></a>i18n(国际化)</h2><h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><h4 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h4><p><code>messages_语言_国家</code><br>例：<br><code>LyQing_zh_CN.properties</code></p>
-<span id="more"></span>
-<h4 id="Spring配置文件"><a href="#Spring配置文件" class="headerlink" title="Spring配置文件"></a>Spring配置文件</h4><p>bean.xml</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;messageSource&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.context.support.ResourceBundleMessageSource&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;basenames&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>LyQing<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;defaultEncoding&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span>utf-8<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+                    <h1 id="更新日志-Day4"><a href="#更新日志-Day4" class="headerlink" title="更新日志-Day4"></a>更新日志-Day4</h1><h2 id="项目Github地址"><a href="#项目Github地址" class="headerlink" title="项目Github地址"></a>项目Github地址</h2><h2 id="https-github-com-LyQing63-doubanFM"><a href="#https-github-com-LyQing63-doubanFM" class="headerlink" title="https://github.com/LyQing63/doubanFM"></a><a href="">https://github.com/LyQing63/doubanFM</a></h2><p>今日实现了user,subject,singer的后端接口</p>
+<hr>
+<p>一部分使用了REST风格，一部分使用了传统的@ResponseParam风格。<br>如何form表单提交REST风格的数据未完成。还需努力，之后的前端页面开发以及收藏功能的实现之后再完成。</p>
 
-<h3 id="使用Bundle"><a href="#使用Bundle" class="headerlink" title="使用Bundle"></a>使用Bundle</h3><p>直接调用到资源配置文件</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Resourcei18n</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">ResourceBundle</span> <span class="variable">bundle</span> <span class="operator">=</span> ResourceBundle.getBundle(<span class="string">&quot;messages&quot;</span>,</span><br><span class="line">                <span class="keyword">new</span> <span class="title class_">Locale</span>(<span class="string">&quot;zh&quot;</span>, <span class="string">&quot;CN&quot;</span>));</span><br><span class="line">        <span class="type">String</span> <span class="variable">value1</span> <span class="operator">=</span> bundle.getString(<span class="string">&quot;test&quot;</span>);</span><br><span class="line">        System.out.println(value1);</span><br><span class="line"></span><br><span class="line">        <span class="type">ResourceBundle</span> <span class="variable">bundle1</span> <span class="operator">=</span> ResourceBundle.getBundle(<span class="string">&quot;messages&quot;</span>,</span><br><span class="line">                <span class="keyword">new</span> <span class="title class_">Locale</span>(<span class="string">&quot;en&quot;</span>, <span class="string">&quot;GB&quot;</span>));</span><br><span class="line">        <span class="type">String</span> <span class="variable">value2</span> <span class="operator">=</span> bundle1.getString(<span class="string">&quot;test&quot;</span>);</span><br><span class="line">        System.out.println(value2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="使用Spring"><a href="#使用Spring" class="headerlink" title="使用Spring"></a>使用Spring</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> java.util.Locale;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ResourceI18n</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">ApplicationContext</span> <span class="variable">context</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClassPathXmlApplicationContext</span>(<span class="string">&quot;bean.xml&quot;</span>);</span><br><span class="line"></span><br><span class="line">        Object[] objs = <span class="keyword">new</span> <span class="title class_">Object</span>[] &#123;<span class="string">&quot;LyQing&quot;</span>, <span class="keyword">new</span> <span class="title class_">Date</span>().toString()&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">value1</span> <span class="operator">=</span> context.getMessage(<span class="string">&quot;www.LyQing.com&quot;</span>, objs, Locale.CHINA);</span><br><span class="line">        System.out.println(value1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
                       
 
                         
@@ -231,21 +225,6 @@
         <div class="article-info article-info-index">
           
               
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
                 
 
                   
@@ -296,7 +275,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://lyqing63.github.io/2023/03/30/eb8caaa459bf/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lyqing63.github.io/2023/05/15/b488fae2ecc4/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -310,18 +289,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2023/03/30/8b3eb4d98399/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Validation
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/03/30/1c11fce21ee7/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Spring-Resources</div>
+    <a href="/2023/05/11/93a52cd1569c/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">doubanFM更新日志-day3</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -348,7 +318,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#i18n-%E5%9B%BD%E9%99%85%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">i18n(国际化)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.</span> <span class="toc-text">配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E5%90%8D"><span class="toc-number">1.1.1.</span> <span class="toc-text">命名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Spring%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.2.</span> <span class="toc-text">Spring配置文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Bundle"><span class="toc-number">1.2.</span> <span class="toc-text">使用Bundle</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Spring"><span class="toc-number">1.3.</span> <span class="toc-text">使用Spring</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97-Day4"><span class="toc-number">1.</span> <span class="toc-text">更新日志-Day4</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AEGithub%E5%9C%B0%E5%9D%80"><span class="toc-number">1.1.</span> <span class="toc-text">项目Github地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#https-github-com-LyQing63-doubanFM"><span class="toc-number">1.2.</span> <span class="toc-text">https:&#x2F;&#x2F;github.com&#x2F;LyQing63&#x2F;doubanFM</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -365,8 +335,8 @@
                   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "https://LyQing63.github.io/2023/03/30/eb8caaa459bf/", 
-    sourceId: "i18n",
+    url: "https://LyQing63.github.io/2023/05/15/b488fae2ecc4/", 
+    sourceId: "doubanFM更新日志-day4",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };
