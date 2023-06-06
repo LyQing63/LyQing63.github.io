@@ -63,7 +63,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 21
+			总文章数 31
 		</nav>		
 		<nav class="header-smart-menu">
     		
@@ -158,7 +158,7 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-数据库数据传输到前端页面后精度丢失问题"
+    <article id="post-MySQL-内连接"
   class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -166,7 +166,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/05/18/0e588b4112b2/">数据库数据传输到前端页面后精度丢失问题</a>
+      <a class="article-title" href="/2023/06/06/7f0854ee6bd9/">MySQL-内连接</a>
     </h1>
   
 
@@ -174,8 +174,8 @@
           
               <!--显示阅读次数完毕-->
               
-                <a href="/2023/05/18/0e588b4112b2/" class="archive-article-date">
-  	<time datetime="2023-05-18T07:27:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-18</time>
+                <a href="/2023/06/06/7f0854ee6bd9/" class="archive-article-date">
+  	<time datetime="2023-06-06T11:22:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-06</time>
 	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
 </a>
                   
@@ -183,40 +183,27 @@
       
         <div class="article-entry" itemprop="articleBody">
           
-            <h1 id="Takeout"><a href="#Takeout" class="headerlink" title="Takeout"></a>Takeout</h1><p>github地址:<a href="">https://github.com/LyQing63/takeout</a></p>
-<h2 id="精度丢失问题"><a href="#精度丢失问题" class="headerlink" title="精度丢失问题"></a>精度丢失问题</h2><p>MySQL的员工数据使用雪花算法生成ID为Long型数据:<br>如：1658852442009346050<br>但是在网页端js接收到的数据为：<br>1658852442009346000<br>可见最后的几位因为精度而丢失，导致数据读取错误</p>
-              
-                  
+                    <h2 id="MySQL-内连接"><a href="#MySQL-内连接" class="headerlink" title="MySQL-内连接"></a>MySQL-内连接</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">  *</span><br><span class="line">FROM</span><br><span class="line">  table_a</span><br><span class="line">  INNER JOIN table_b</span><br><span class="line">ON</span><br><span class="line">  table_a.id = table_b.student_id;</span><br></pre></td></tr></table></figure>
+
+<p>实现了在两表有交集的数据</p>
+<h3 id="union关键字"><a href="#union关键字" class="headerlink" title="union关键字"></a>union关键字</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">  *</span><br><span class="line">FROM</span><br><span class="line">  table_a</span><br><span class="line">  LEFT JOIN table_b</span><br><span class="line">ON</span><br><span class="line">  table_a.id = table_b.student_id</span><br><span class="line">UNION DISTINCT</span><br><span class="line">SELECT</span><br><span class="line">  *</span><br><span class="line">FROM</span><br><span class="line">  table_a</span><br><span class="line">  RIGHT JOIN table_b ON table_a.id=table_b.student_id;</span><br></pre></td></tr></table></figure>
+
+<p>同时执行了A，B表的连接<br>将两个查询语句合并执行</p>
+<h3 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">  *</span><br><span class="line">FROM</span><br><span class="line">  table_a</span><br><span class="line">  LEFT JOIN table_b ON table_a.id = table_b.student_id</span><br><span class="line">WHERE</span><br><span class="line">  table_b.student_id IS NULL;</span><br></pre></td></tr></table></figure>
+<p>实现了查找不在与b表无联系的a表数据</p>
+
+                      
 
                         
         </div>
         <div class="article-info article-info-index">
           
               
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">MyBatisPlus</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
                 
 
                   
                     <p class="article-more-link">
-                      <a class="article-more-a" href="/2023/05/18/0e588b4112b2/">
+                      <a class="article-more-a" href="/2023/06/06/7f0854ee6bd9/">
                         展开全文 >>
                       </a>
                     </p>
@@ -247,7 +234,7 @@
 
         
   
-    <article id="post-doubanFM更新日志-day4"
+    <article id="post-MySQL-右连接"
   class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -255,7 +242,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/05/15/b488fae2ecc4/">doubanFM更新日志-day4</a>
+      <a class="article-title" href="/2023/06/06/c72543bd4af5/">MySQL-右连接</a>
     </h1>
   
 
@@ -263,8 +250,8 @@
           
               <!--显示阅读次数完毕-->
               
-                <a href="/2023/05/15/b488fae2ecc4/" class="archive-article-date">
-  	<time datetime="2023-05-15T12:01:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-15</time>
+                <a href="/2023/06/06/c72543bd4af5/" class="archive-article-date">
+  	<time datetime="2023-06-06T11:05:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-06</time>
 	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
 </a>
                   
@@ -272,9 +259,18 @@
       
         <div class="article-entry" itemprop="articleBody">
           
-            <h1 id="更新日志-Day4"><a href="#更新日志-Day4" class="headerlink" title="更新日志-Day4"></a>更新日志-Day4</h1><h2 id="项目Github地址"><a href="#项目Github地址" class="headerlink" title="项目Github地址"></a>项目Github地址</h2><h2 id="https-github-com-LyQing63-doubanFM"><a href="#https-github-com-LyQing63-doubanFM" class="headerlink" title="https://github.com/LyQing63/doubanFM"></a><a href="">https://github.com/LyQing63/doubanFM</a></h2><p>今日实现了user,subject,singer的后端接口</p>
-              
-                  
+                    <h2 id="MySQL-右连接"><a href="#MySQL-右连接" class="headerlink" title="MySQL-右连接"></a>MySQL-右连接</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">  *</span><br><span class="line">FROM</span><br><span class="line">  TableA RIGHT JOIN </span><br><span class="line">  TableB </span><br><span class="line">  ON condition;</span><br></pre></td></tr></table></figure>
+
+<p>与左连接相反，返回符合条件的右表的所有内容</p>
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">  *</span><br><span class="line">FROM</span><br><span class="line">  ykd_teacher</span><br><span class="line">  RIGHT JOIN ykd_course ON ykd_teacher.id = ykd_course.teacher_id;</span><br></pre></td></tr></table></figure>
+
+<h3 id="多表关联查询"><a href="#多表关联查询" class="headerlink" title="多表关联查询"></a>多表关联查询</h3><p>语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">  *</span><br><span class="line">FROM</span><br><span class="line">  TableA </span><br><span class="line">  LEFT JOIN TableB ON conditionA</span><br><span class="line">  LEFT JOIN TableC ON conditionB;</span><br></pre></td></tr></table></figure>
+
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">  *</span><br><span class="line">FROM</span><br><span class="line">  ykd_course</span><br><span class="line">  LEFT JOIN ykd_student ON ykd_student.course_id = ykd_course.id</span><br><span class="line">  LEFT JOIN ykd_teacher on ykd_course.teacher_id = ykd_teacher.id;</span><br></pre></td></tr></table></figure>
+                      
 
                         
         </div>
@@ -285,7 +281,7 @@
 
                   
                     <p class="article-more-link">
-                      <a class="article-more-a" href="/2023/05/15/b488fae2ecc4/">
+                      <a class="article-more-a" href="/2023/06/06/c72543bd4af5/">
                         展开全文 >>
                       </a>
                     </p>
@@ -316,7 +312,7 @@
 
         
   
-    <article id="post-doubanFM更新日志-day3"
+    <article id="post-MySQL-左连接"
   class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -324,7 +320,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/05/11/93a52cd1569c/">doubanFM更新日志-day3</a>
+      <a class="article-title" href="/2023/06/05/35db0fa7eb51/">MySQL-左连接</a>
     </h1>
   
 
@@ -332,8 +328,8 @@
           
               <!--显示阅读次数完毕-->
               
-                <a href="/2023/05/11/93a52cd1569c/" class="archive-article-date">
-  	<time datetime="2023-05-11T14:41:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-11</time>
+                <a href="/2023/06/05/35db0fa7eb51/" class="archive-article-date">
+  	<time datetime="2023-06-05T12:58:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-05</time>
 	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
 </a>
                   
@@ -341,31 +337,23 @@
       
         <div class="article-entry" itemprop="articleBody">
           
-            <h1 id="更新日志-Day3"><a href="#更新日志-Day3" class="headerlink" title="更新日志-Day3"></a>更新日志-Day3</h1><h2 id="项目Github地址"><a href="#项目Github地址" class="headerlink" title="项目Github地址"></a>项目Github地址</h2><h2 id="https-github-com-LyQing63-doubanFM"><a href="#https-github-com-LyQing63-doubanFM" class="headerlink" title="https://github.com/LyQing63/doubanFM"></a><a href="">https://github.com/LyQing63/doubanFM</a></h2><p>今日实现了从<a href="">https://fm.douban.com/j/v2/rec_channels?specific=all</a> 页面中爬取JSON数据</p>
-              
-                  
+                    <h2 id="MySQL-左连接"><a href="#MySQL-左连接" class="headerlink" title="MySQL-左连接"></a>MySQL-左连接</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">  *</span><br><span class="line">FROM</span><br><span class="line">  TableA LEFT  JOIN</span><br><span class="line">  TableB</span><br><span class="line">  ON condition;</span><br></pre></td></tr></table></figure>
+
+<p>左连接返回左表的所有的数据，即使右表没有匹配的数据</p>
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">  *</span><br><span class="line">FROM</span><br><span class="line">  ykd_teacher</span><br><span class="line">  LEFT JOIN ykd_course ON ykd_teacher.id = ykd_course.teacher_id;</span><br></pre></td></tr></table></figure>
+                      
 
                         
         </div>
         <div class="article-info article-info-index">
           
               
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
                 
 
                   
                     <p class="article-more-link">
-                      <a class="article-more-a" href="/2023/05/11/93a52cd1569c/">
+                      <a class="article-more-a" href="/2023/06/05/35db0fa7eb51/">
                         展开全文 >>
                       </a>
                     </p>
@@ -396,7 +384,7 @@
 
         
   
-    <article id="post-doubanFM更新日志-day2"
+    <article id="post-MySQL-TRIM函数"
   class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -404,7 +392,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/05/09/1a667dc9addb/">doubanFM更新日志-day2</a>
+      <a class="article-title" href="/2023/06/02/20a477d6cf34/">MySQL-TRIM函数</a>
     </h1>
   
 
@@ -412,8 +400,8 @@
           
               <!--显示阅读次数完毕-->
               
-                <a href="/2023/05/09/1a667dc9addb/" class="archive-article-date">
-  	<time datetime="2023-05-09T13:08:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-09</time>
+                <a href="/2023/06/02/20a477d6cf34/" class="archive-article-date">
+  	<time datetime="2023-06-02T12:23:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-02</time>
 	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
 </a>
                   
@@ -421,466 +409,36 @@
       
         <div class="article-entry" itemprop="articleBody">
           
-            <h1 id="更新日志-Day2"><a href="#更新日志-Day2" class="headerlink" title="更新日志-Day2"></a>更新日志-Day2</h1><h2 id="项目Github地址"><a href="#项目Github地址" class="headerlink" title="项目Github地址"></a>项目Github地址</h2><h2 id="https-github-com-LyQing63-doubanFM"><a href="#https-github-com-LyQing63-doubanFM" class="headerlink" title="https://github.com/LyQing63/doubanFM"></a><a href="">https://github.com/LyQing63/doubanFM</a></h2><p>今日实现了从<a href="">https://fm.douban.com/j/v2/rec_channels?specific=all</a> 页面中爬取JSON数据</p>
-              
-                  
+                    <h2 id="MySQL-TRIM函数"><a href="#MySQL-TRIM函数" class="headerlink" title="MySQL-TRIM函数"></a>MySQL-TRIM函数</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>①<br>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TRIM (str)</span><br></pre></td></tr></table></figure>
+<p>其中会将str的空格去掉，但是不会修改原数据，只是修改查询到的数据。<br>修改数据需要配合UPDATE/DELETE语句使用</p>
+<p>②<br>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TRIM( BOTH|LEADING|TRAILING removed_str FROM str);</span><br></pre></td></tr></table></figure>
 
-                        
-        </div>
-        <div class="article-info article-info-index">
-          
-              
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-                
-
-                  
-                    <p class="article-more-link">
-                      <a class="article-more-a" href="/2023/05/09/1a667dc9addb/">
-                        展开全文 >>
-                      </a>
-                    </p>
-                    
-
-                      
-                            <div class="clearfix"></div>
-        </div>
-  </div>
-</article>
-
-      <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-        
-  
-    <article id="post-doubanFM编写时遇到的问题-Day1"
-  class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/05/08/f3183b0fa25d/">doubanFM编写时遇到的问题-Day1</a>
-    </h1>
-  
-
-          <!--显示阅读次数-->
-          
-              <!--显示阅读次数完毕-->
-              
-                <a href="/2023/05/08/f3183b0fa25d/" class="archive-article-date">
-  	<time datetime="2023-05-08T13:31:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-08</time>
-	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
-</a>
-                  
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-            <h1 id="doubanFM编写时遇到的问题-Day1"><a href="#doubanFM编写时遇到的问题-Day1" class="headerlink" title="doubanFM编写时遇到的问题-Day1"></a>doubanFM编写时遇到的问题-Day1</h1><h2 id="项目Github地址"><a href="#项目Github地址" class="headerlink" title="项目Github地址"></a>项目Github地址</h2><h2 id="https-github-com-LyQing63-doubanFM"><a href="#https-github-com-LyQing63-doubanFM" class="headerlink" title="https://github.com/LyQing63/doubanFM"></a><a href="">https://github.com/LyQing63/doubanFM</a></h2><p>在编写过程中遇到了即将List集合数据存入MySQL中的问题，MySQL中无法设置集合类型的列。<br>本项目是通过另建一个表来存放相S同某一个对象的List的所有内容，其中设置一列id来映射主表对应的数据。</p>
-              
-                  
-
-                        
-        </div>
-        <div class="article-info article-info-index">
-          
-              
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-                
-
-                  
-                    <p class="article-more-link">
-                      <a class="article-more-a" href="/2023/05/08/f3183b0fa25d/">
-                        展开全文 >>
-                      </a>
-                    </p>
-                    
-
-                      
-                            <div class="clearfix"></div>
-        </div>
-  </div>
-</article>
-
-      <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-        
-  
-    <article id="post-SpringBoot"
-  class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/04/24/e3f13d75b3cf/">SpringBoot</a>
-    </h1>
-  
-
-          <!--显示阅读次数-->
-          
-              <!--显示阅读次数完毕-->
-              
-                <a href="/2023/04/24/e3f13d75b3cf/" class="archive-article-date">
-  	<time datetime="2023-04-24T05:16:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-04-24</time>
-	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
-</a>
-                  
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-            <h1 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h1><p>What Spring can do:</p>
-<ol>
-<li>Microservices(微服务)</li>
-<li>Reactive(响应式编程)</li>
-<li>Cloud(分布式云开发)</li>
-<li>Web apps(web开发)</li>
-<li>Serverless(无服务开发)</li>
-<li>Event Driver(事件驱动)</li>
-<li>Batch(P处理业务)</li>
-</ol>
-<p>SpringBoot可以简化各个框架的整合，通过响应式开发，快速开发出生产级别的Spring应用</p>
-              
-                  
-
-                        
-        </div>
-        <div class="article-info article-info-index">
-          
-              
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-                
-
-                  
-                    <p class="article-more-link">
-                      <a class="article-more-a" href="/2023/04/24/e3f13d75b3cf/">
-                        展开全文 >>
-                      </a>
-                    </p>
-                    
-
-                      
-                            <div class="clearfix"></div>
-        </div>
-  </div>
-</article>
-
-      <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-        
-  
-    <article id="post-MyBatis"
-  class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/04/08/f08fee3b1b49/">MyBatis</a>
-    </h1>
-  
-
-          <!--显示阅读次数-->
-          
-              <!--显示阅读次数完毕-->
-              
-                <a href="/2023/04/08/f08fee3b1b49/" class="archive-article-date">
-  	<time datetime="2023-04-08T03:14:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-04-08</time>
-	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
-</a>
-                  
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-            <h2 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h2><p>是一个持久层(Dao)的框架</p>
-<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ul>
-<li>定制化SQL、储存过程及高级映射的优秀持久层框架</li>
-<li>避免JDBC代码和手动设置参数以及获取结果集</li>
-<li>可以用XML或注解进行配置与映射，将接口和Java的POJO(Plan Old Java Objects,简单Java对象) 映射成数据库数据</li>
-<li>半自动的ORM(Object Relation Mapping) 框架
-              
-                  
-
-                        
-        </div>
-        <div class="article-info article-info-index">
-          
-              
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MyBatis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-                
-
-                  
-                    <p class="article-more-link">
-                      <a class="article-more-a" href="/2023/04/08/f08fee3b1b49/">
-                        展开全文 >>
-                      </a>
-                    </p>
-                    
-
-                      
-                            <div class="clearfix"></div>
-        </div>
-  </div>
-</article>
-
-      <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-        
-  
-    <article id="post-javaWeb"
-  class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/04/02/ffd705015de2/">javaWeb</a>
-    </h1>
-  
-
-          <!--显示阅读次数-->
-          
-              <!--显示阅读次数完毕-->
-              
-                <a href="/2023/04/02/ffd705015de2/" class="archive-article-date">
-  	<time datetime="2023-04-02T04:55:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-04-02</time>
-	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
-</a>
-                  
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-            <h2 id="JavaWeb"><a href="#JavaWeb" class="headerlink" title="JavaWeb"></a>JavaWeb</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>响应与请求关系<br><img src="https://github.com/LyQing63/LyQing63.github.io/blob/main/img/%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94.png?raw=true"></p>
-              
-                  
-
-                        
-        </div>
-        <div class="article-info article-info-index">
-          
-              
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-                
-
-                  
-                    <p class="article-more-link">
-                      <a class="article-more-a" href="/2023/04/02/ffd705015de2/">
-                        展开全文 >>
-                      </a>
-                    </p>
-                    
-
-                      
-                            <div class="clearfix"></div>
-        </div>
-  </div>
-</article>
-
-      <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-        
-  
-    <article id="post-spring-MVC"
-  class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/03/31/6aab69e40732/">spring-MVC</a>
-    </h1>
-  
-
-          <!--显示阅读次数-->
-          
-              <!--显示阅读次数完毕-->
-              
-                <a href="/2023/03/31/6aab69e40732/" class="archive-article-date">
-  	<time datetime="2023-03-31T00:57:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-31</time>
-	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
-</a>
-                  
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-            <h2 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring-MVC"></a>Spring-MVC</h2><h3 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h3><p>概念：<br>MVC是一种软件架构的思想，将软件按照模型、视图、控制器来划分</p>
-<p>M：Model，模型层，指工程中的JavaBean，作用是处理数据</p>
-<p>JavaBean分为两类：</p>
+<p>可以精确的控制去掉前面或者后面的空格</p>
 <ul>
-<li>一类称为实体类Bean：专门存储业务数据的，如 Student、User 等</li>
-<li>一类称为业务处理 Bean：指 Service 或 Dao 对象，专门用于处理业务逻辑和数据访问。</li>
+<li>LEADING：去除前面的空格</li>
+<li>TRAILING：去除后面的空格</li>
+<li>BOTH（默认）：去除前面和后面的空格</li>
 </ul>
-<p>V：View，视图层，指工程中的html或jsp等页面，作用是与用户进行交互，展示数据</p>
-<p>C：Controller，控制层，指工程中的servlet，作用是接收请求和响应浏览器</p>
-              
-                  
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">  TRIM(</span><br><span class="line">    TRAILING &#x27;Q&#x27;</span><br><span class="line">    FROM</span><br><span class="line">      fever</span><br><span class="line">  )</span><br><span class="line">FROM</span><br><span class="line">  timi_adc</span><br><span class="line">WHERE</span><br><span class="line">  id = 21;</span><br></pre></td></tr></table></figure>
+
+<p>其中去除了fever尾部的’Q’</p>
+<p>缺陷：不能去除数据中部的值。<br>如果要修改数据中部的值，需要调用REPLACE函数</p>
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">UPDATE table_name </span><br><span class="line">SET colunm_name = </span><br><span class="line">REPLACE(column_name,string_find,string_to_replace) </span><br><span class="line">WHERE conditions;</span><br></pre></td></tr></table></figure>
+                      
 
                         
         </div>
         <div class="article-info article-info-index">
           
               
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SpringMVC</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
                 
 
                   
                     <p class="article-more-link">
-                      <a class="article-more-a" href="/2023/03/31/6aab69e40732/">
+                      <a class="article-more-a" href="/2023/06/02/20a477d6cf34/">
                         展开全文 >>
                       </a>
                     </p>
@@ -911,7 +469,7 @@
 
         
   
-    <article id="post-AOT"
+    <article id="post-MySQL-CONCAT函数"
   class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -919,7 +477,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/03/30/8ddaa80ccba0/">AOT</a>
+      <a class="article-title" href="/2023/06/02/49ded95ed665/">MySQL-CONCAT函数</a>
     </h1>
   
 
@@ -927,8 +485,8 @@
           
               <!--显示阅读次数完毕-->
               
-                <a href="/2023/03/30/8ddaa80ccba0/" class="archive-article-date">
-  	<time datetime="2023-03-30T05:09:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-30</time>
+                <a href="/2023/06/02/49ded95ed665/" class="archive-article-date">
+  	<time datetime="2023-06-02T12:06:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-02</time>
 	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
 </a>
                   
@@ -936,10 +494,368 @@
       
         <div class="article-entry" itemprop="articleBody">
           
-            <h2 id="AOT"><a href="#AOT" class="headerlink" title="AOT"></a>AOT</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
-<li><p>JIT: (JUST IN TIME)  动态编译（实时），一边运行，一边编译<br>在程序运行时，可以动态生成代码，但会造成启动比较慢，且编译时会占用运行时的资源</p>
-</li>
-<li><p>AOT: (AHEAD OF TIME) 运行前编译（提前编译）<br>可以把源代码直接转换成机器码，运行的时候直接启动，速度快，内存占用低，但是运行的时候不能进行优化，造成程序安装时间过长</p>
+            <h2 id="MySQL-CONCAT函数"><a href="#MySQL-CONCAT函数" class="headerlink" title="MySQL-CONCAT函数"></a>MySQL-CONCAT函数</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT column_name1,CONCAT(column_name2,str,column_name3),column_name4 FROM table_name;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>CONCAT 函数可以连接列明，也可以拼接字符串</li>
+<li>在使用CONCAT 函数时可以同时查询其他的列</li>
+<li>参数中间使用<code>,</code>分割
+              
+                  
+
+                        
+        </div>
+        <div class="article-info article-info-index">
+          
+              
+                
+
+                  
+                    <p class="article-more-link">
+                      <a class="article-more-a" href="/2023/06/02/49ded95ed665/">
+                        展开全文 >>
+                      </a>
+                    </p>
+                    
+
+                      
+                            <div class="clearfix"></div>
+        </div>
+  </div>
+</article>
+
+      <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+        
+  
+    <article id="post-MySQL-NULL值处理"
+  class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/06/02/7f81e59ffdd3/">MySQL NULL值处理</a>
+    </h1>
+  
+
+          <!--显示阅读次数-->
+          
+              <!--显示阅读次数完毕-->
+              
+                <a href="/2023/06/02/7f81e59ffdd3/" class="archive-article-date">
+  	<time datetime="2023-06-02T11:31:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-02</time>
+	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+</a>
+                  
+      </header>
+      
+        <div class="article-entry" itemprop="articleBody">
+          
+            <h2 id="MySQL-NULL值处理"><a href="#MySQL-NULL值处理" class="headerlink" title="MySQL NULL值处理"></a>MySQL NULL值处理</h2><ul>
+<li>IS NULL：当这一列的值是null的时候返回true</li>
+<li>IS NOT NULL：当这一列的值不为null的时候返回true</li>
+<li>&lt; = &gt; ：比较操作符，当比较两个值都为null时或者相等时返回true
+              
+                  
+
+                        
+        </div>
+        <div class="article-info article-info-index">
+          
+              
+                
+
+                  
+                    <p class="article-more-link">
+                      <a class="article-more-a" href="/2023/06/02/7f81e59ffdd3/">
+                        展开全文 >>
+                      </a>
+                    </p>
+                    
+
+                      
+                            <div class="clearfix"></div>
+        </div>
+  </div>
+</article>
+
+      <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+        
+  
+    <article id="post-MySQL-IN-NOT-IN查询"
+  class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/06/01/d985d9bfbebd/">MySQL-IN/NOT IN查询</a>
+    </h1>
+  
+
+          <!--显示阅读次数-->
+          
+              <!--显示阅读次数完毕-->
+              
+                <a href="/2023/06/01/d985d9bfbebd/" class="archive-article-date">
+  	<time datetime="2023-06-01T12:30:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-01</time>
+	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+</a>
+                  
+      </header>
+      
+        <div class="article-entry" itemprop="articleBody">
+          
+            <h2 id="MySQL-IN-NOT-IN查询"><a href="#MySQL-IN-NOT-IN查询" class="headerlink" title="MySQL-IN/NOT IN查询"></a>MySQL-IN/NOT IN查询</h2><p>用于精确查询<br>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM table_name WHERE column IN (condtionA,condtionB);</span><br></pre></td></tr></table></figure>
+              
+                  
+
+                        
+        </div>
+        <div class="article-info article-info-index">
+          
+              
+                
+
+                  
+                    <p class="article-more-link">
+                      <a class="article-more-a" href="/2023/06/01/d985d9bfbebd/">
+                        展开全文 >>
+                      </a>
+                    </p>
+                    
+
+                      
+                            <div class="clearfix"></div>
+        </div>
+  </div>
+</article>
+
+      <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+        
+  
+    <article id="post-MySQL-AND-OR查询"
+  class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/06/01/30906684345f/">MySQL-AND&amp;OR查询</a>
+    </h1>
+  
+
+          <!--显示阅读次数-->
+          
+              <!--显示阅读次数完毕-->
+              
+                <a href="/2023/06/01/30906684345f/" class="archive-article-date">
+  	<time datetime="2023-06-01T12:06:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-01</time>
+	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+</a>
+                  
+      </header>
+      
+        <div class="article-entry" itemprop="articleBody">
+          
+            <h2 id="MySQL-AND-amp-OR查询"><a href="#MySQL-AND-amp-OR查询" class="headerlink" title="MySQL-AND&amp;OR查询"></a>MySQL-AND&amp;OR查询</h2><p>用于条件查询</p>
+<p>实例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM table_name WHERE conditionA AND/OR condtionB;</span><br></pre></td></tr></table></figure>
+              
+                  
+
+                        
+        </div>
+        <div class="article-info article-info-index">
+          
+              
+                
+
+                  
+                    <p class="article-more-link">
+                      <a class="article-more-a" href="/2023/06/01/30906684345f/">
+                        展开全文 >>
+                      </a>
+                    </p>
+                    
+
+                      
+                            <div class="clearfix"></div>
+        </div>
+  </div>
+</article>
+
+      <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+        
+  
+    <article id="post-MySQL-Like查询"
+  class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/06/01/c39748d15537/">MySQL-Like查询</a>
+    </h1>
+  
+
+          <!--显示阅读次数-->
+          
+              <!--显示阅读次数完毕-->
+              
+                <a href="/2023/06/01/c39748d15537/" class="archive-article-date">
+  	<time datetime="2023-06-01T11:43:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-01</time>
+	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+</a>
+                  
+      </header>
+      
+        <div class="article-entry" itemprop="articleBody">
+          
+            <h2 id="MySQL-Like查询"><a href="#MySQL-Like查询" class="headerlink" title="MySQL-Like查询"></a>MySQL-Like查询</h2><p>用于模糊查询</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM table_name WHERE condition LIKE condition;</span><br></pre></td></tr></table></figure>
+              
+                  
+
+                        
+        </div>
+        <div class="article-info article-info-index">
+          
+              
+                
+
+                  
+                    <p class="article-more-link">
+                      <a class="article-more-a" href="/2023/06/01/c39748d15537/">
+                        展开全文 >>
+                      </a>
+                    </p>
+                    
+
+                      
+                            <div class="clearfix"></div>
+        </div>
+  </div>
+</article>
+
+      <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+        
+  
+    <article id="post-JVM内存区域与溢出异常"
+  class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/05/18/d4c078cf33fb/">JVM内存区域与溢出异常</a>
+    </h1>
+  
+
+          <!--显示阅读次数-->
+          
+              <!--显示阅读次数完毕-->
+              
+                <a href="/2023/05/18/d4c078cf33fb/" class="archive-article-date">
+  	<time datetime="2023-05-18T14:19:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-18</time>
+	  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+</a>
+                  
+      </header>
+      
+        <div class="article-entry" itemprop="articleBody">
+          
+            <h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><h2 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h2><h3 id="功能划分"><a href="#功能划分" class="headerlink" title="功能划分"></a>功能划分</h3><ul>
+<li>JDK： Java语言 + Java虚拟机 + Java类库</li>
+<li>JRE：Java SE + Java虚拟机
               
                   
 
@@ -955,10 +871,6 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
       		
 		</ul>
 	</div>
@@ -967,7 +879,7 @@
 
                   
                     <p class="article-more-link">
-                      <a class="article-more-a" href="/2023/03/30/8ddaa80ccba0/">
+                      <a class="article-more-a" href="/2023/05/18/d4c078cf33fb/">
                         展开全文 >>
                       </a>
                     </p>
@@ -1000,7 +912,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1107,19 +1019,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1128,6 +1036,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">MyBatisPlus</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
             
             <div class="clearfix"></div>
