@@ -1,0 +1,432 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>数学建模算法-层次分析模型(上) | 灵檠 | blog</title><meta name="author" content="灵檠"><meta name="copyright" content="灵檠"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="引言​    本篇章作为学习数学建模算法的第一篇文章，在接下来的两个月冲刺接下来的美赛。首先，介绍一下今天的主角层次分析模型(AHP)。 ​    AHP是一种用于多准则决策分析的数学方法，由美国运筹学家托马斯·L·塞蒂尔于20世纪70年代提出。AHP模型以层次结构为基础，将决策问题划分为多个层次，并通过对每个层次的准则进行比较和权重计算，最终得出最优选择。 ​    说白了，就是给每一种选择定上">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数学建模算法-层次分析模型(上)">
+<meta property="og:url" content="https://lyqing63.github.io/post/3f850a16.html">
+<meta property="og:site_name" content="灵檠 | blog">
+<meta property="og:description" content="引言​    本篇章作为学习数学建模算法的第一篇文章，在接下来的两个月冲刺接下来的美赛。首先，介绍一下今天的主角层次分析模型(AHP)。 ​    AHP是一种用于多准则决策分析的数学方法，由美国运筹学家托马斯·L·塞蒂尔于20世纪70年代提出。AHP模型以层次结构为基础，将决策问题划分为多个层次，并通过对每个层次的准则进行比较和权重计算，最终得出最优选择。 ​    说白了，就是给每一种选择定上">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yjxx.oss-cn-nanjing.aliyuncs.com/img/202311222157854.png">
+<meta property="article:published_time" content="2023-11-22T11:45:00.000Z">
+<meta property="article:modified_time" content="2023-11-22T13:57:24.158Z">
+<meta property="article:author" content="灵檠">
+<meta property="article:tag" content="MCM&#x2F;ICM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yjxx.oss-cn-nanjing.aliyuncs.com/img/202311222157854.png"><link rel="shortcut icon" href="https://q1.qlogo.cn/g?b=qq&nk=1827304875&s=3"><link rel="canonical" href="https://lyqing63.github.io/post/3f850a16.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '数学建模算法-层次分析模型(上)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-22 21:57:24'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/universe.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://q1.qlogo.cn/g?b=qq&amp;nk=1827304875&amp;s=100" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archive/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-comments-o"></i><span> 分享</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://yjxx.oss-cn-nanjing.aliyuncs.com/img/202311222157854.png')"><nav id="nav"><span id="blog-info"><a href="/" title="灵檠 | blog"><span class="site-name">灵檠 | blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-comments-o"></i><span> 分享</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">数学建模算法-层次分析模型(上)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-22T11:45:00.000Z" title="发表于 2023-11-22 19:45:00">2023-11-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-22T13:57:24.158Z" title="更新于 2023-11-22 21:57:24">2023-11-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="数学建模算法-层次分析模型(上)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>​    本篇章作为学习数学建模算法的第一篇文章，在接下来的两个月冲刺接下来的美赛。首先，介绍一下今天的主角层次分析模型(AHP)。</p>
+<p>​    AHP是一种用于多准则决策分析的数学方法，由美国运筹学家托马斯·L·塞蒂尔于20世纪70年代提出。AHP模型以层次结构为基础，将决策问题划分为多个层次，并通过对每个层次的准则进行比较和权重计算，最终得出最优选择。</p>
+<p>​    说白了，就是给每一种选择定上一个标码(权重)，通过权重的比较来决定你的选择。那么权重是怎么规定的呢，AHP通过构建判断矩阵，这个矩阵记录了重要性分级，是专家或者决策者主管填写的，然后通过计算举证的特征值和特征向量，从而得到权重，及其贡献程度。</p>
+<p>​    接下来详细地介绍一下AHP模型的原理。</p>
+<h2 id="AHP模型的基本原理"><a href="#AHP模型的基本原理" class="headerlink" title="AHP模型的基本原理"></a>AHP模型的基本原理</h2><h3 id="层次结构和判断矩阵的概念"><a href="#层次结构和判断矩阵的概念" class="headerlink" title="层次结构和判断矩阵的概念"></a>层次结构和判断矩阵的概念</h3><p>​    层次结构是指将复杂的问题分解成不同的层次，每个层次包含不同的准则或因素，用于根本更好地理解和分析问题。在层次结构中，目标曾代表最终的决策目标、准则层表示用于评估和比较各个方案的准则，方案层表示可供选择的各个方案或选项。</p>
+<p>​    层次分析法是一种解决多目标的复杂问题的定性与定量相结合的<strong>决策分析方法</strong>。该方法将定量分析与定性分析结合起来，用<strong>决策者</strong>的经验判断各衡量目标能否实现的标准之间的相对重要程度，并合理地给出每个决策方案的每个标准的<strong>权数</strong>，利用权数求出各方案的优劣次序，比较有效地应用于那些难以用定量方法解决的课题。</p>
+<p>​    <strong>判断矩阵</strong>是一种用于描述因素之间相对重要性的工具，它是根据专家的主观判断构建的。 在层次分析法（AHP）等决策方法中，判断矩阵用于对不同因素和准则进行比较和评估，以确定它们之间的相对重要性。判断矩阵通常采用成对比较的方式构建，通过专家的意见或经验来确定不同因素之间的重要程度。</p>
+<p>​    这些概念在决策分析中起着重要的作用，帮助决策者进行合理的决策和评估。通过层次结构和判断矩阵，决策者可以将复杂的问题进行分解和比较，从而对各个因素和方案进行权衡和选择</p>
+<h2 id="AHP模型的实施步骤"><a href="#AHP模型的实施步骤" class="headerlink" title="AHP模型的实施步骤"></a>AHP模型的实施步骤</h2><h3 id="层次分析法步骤"><a href="#层次分析法步骤" class="headerlink" title="层次分析法步骤"></a>层次分析法步骤</h3><ol>
+<li><p>建立层次结构模型</p>
+</li>
+<li><p>构造判断矩阵</p>
+</li>
+<li><p>层次单排序及其一致性检验</p>
+</li>
+<li><p>层次总排序及其一致性检验</p>
+</li>
+</ol>
+<h4 id="建立层次结构模型"><a href="#建立层次结构模型" class="headerlink" title="建立层次结构模型"></a>建立层次结构模型</h4><p>​    有三层：</p>
+<ul>
+<li><p>目标层</p>
+</li>
+<li><p>准则层</p>
+</li>
+<li><p>方案层</p>
+<p>例如：</p>
+<p>目标是选择最优的旅游地选择，评价选择的准则是：景点、费用、居住、饮食、旅游，方案有：西安、云南、西藏、青海。</p>
+<p>于是构成如下的结构图</p>
+<p><img src="https://yjxx.oss-cn-nanjing.aliyuncs.com/img/202311222039799.png" alt=""></p>
+</li>
+</ul>
+<p>其中准则层可能有很多层。</p>
+<h4 id="构造判断矩阵"><a href="#构造判断矩阵" class="headerlink" title="构造判断矩阵"></a>构造判断矩阵</h4><p>构造上述的准则层表</p>
+<p><img src="https://yjxx.oss-cn-nanjing.aliyuncs.com/img/202311222052575.png" alt=""></p>
+<p>对此我们构建一个5*5的判断矩阵</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>景色</th>
+<th>费用</th>
+<th>居住</th>
+<th>饮食</th>
+<th>旅途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>景色</td>
+<td>1</td>
+<td>5</td>
+<td>5</td>
+<td>1/3</td>
+<td>8</td>
+</tr>
+<tr>
+<td>费用</td>
+<td>1/5</td>
+<td>1</td>
+<td>1/4</td>
+<td>1/6</td>
+<td>2</td>
+</tr>
+<tr>
+<td>居住</td>
+<td>1/5</td>
+<td>4</td>
+<td>1</td>
+<td>1/5</td>
+<td>3</td>
+</tr>
+<tr>
+<td>饮食</td>
+<td>3</td>
+<td>6</td>
+<td>7</td>
+<td>1</td>
+<td>6</td>
+</tr>
+<tr>
+<td>旅途</td>
+<td>1/8</td>
+<td>1/2</td>
+<td>1/3</td>
+<td>1/6</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="层次单排序"><a href="#层次单排序" class="headerlink" title="层次单排序"></a>层次单排序</h4><p>简单地说，层次单排序就是根据我们构成的判断矩阵，求解各个指标的权重。</p>
+<p>我们计算权重有两种方法</p>
+<ol>
+<li><p>方根法</p>
+<script type="math/tex; mode=display">
+\bar{w}_i = \sqrt[m]{\prod^{m}_{j=1}a_{ij}}</script><p>将向量标准化即为权重向量，得到权重</p>
+<script type="math/tex; mode=display">
+w_i = \frac{\bar{w}_i}{\sum^m_{j=1}\bar{w}_j}</script></li>
+<li><p>和法</p>
+<ul>
+<li>将矩阵的每列进行标准化(列向量归一化)</li>
+<li>将标准化后的元素按行求和</li>
+<li>将求和结果标准化</li>
+</ul>
+</li>
+</ol>
+<h4 id="求解最大特征根与CI值"><a href="#求解最大特征根与CI值" class="headerlink" title="求解最大特征根与CI值"></a>求解最大特征根与CI值</h4><p>计算最大特征根</p>
+<script type="math/tex; mode=display">
+\lambda_{max} = \frac{1}{n}\sum^{n}_{i=1}\frac{(AW)_i}{W_i}</script><p>AW：判断矩阵*标准化后的权重，然后累加</p>
+<script type="math/tex; mode=display">
+CI=\frac{\lambda_{max}-n}{n-1}</script><h3 id="根据CI、RI值求解CR值，判断其一致性是否通过"><a href="#根据CI、RI值求解CR值，判断其一致性是否通过" class="headerlink" title="根据CI、RI值求解CR值，判断其一致性是否通过"></a>根据CI、RI值求解CR值，判断其一致性是否通过</h3><p>RI值为一个固定表格，这个是Satty 模拟 1000 次得到的随机一致性指标 RI取值表(如下表 所示):</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>矩阵阶数 n</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RI</td>
+<td>0</td>
+<td>0</td>
+<td>0.58</td>
+<td>0.90</td>
+<td>1.12</td>
+<td>1.24</td>
+<td>1.32</td>
+<td>1.41</td>
+<td>1.45</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>矩阵阶数 n</th>
+<th>10</th>
+<th>11</th>
+<th>12</th>
+<th>13</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RI</td>
+<td>1.49</td>
+<td>1.51</td>
+<td>1.54</td>
+<td>1.56</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>然后便可计算CR值</p>
+<script type="math/tex; mode=display">
+CR=\frac{CI}{RI}</script><p>当CR值&lt;0.1时，表明矩阵A的一致性在可容忍的范围</p>
+<h3 id="层次总排序与一致性检验"><a href="#层次总排序与一致性检验" class="headerlink" title="层次总排序与一致性检验"></a>层次总排序与一致性检验</h3><p>​    计算某一层次所有因素对于最高层（目标层）相对重要性的权值，称为层次总排序。该过程是从最高层次向最低层次依次进行：</p>
+<p><img src="https://pic3.zhimg.com/80/v2-4a230d6068c358dbffeb7b82e501c5a2_720w.webp" alt=""></p>
+<p>得到一致性比率为</p>
+<script type="math/tex; mode=display">
+CR = \frac{a_1CI_1+a_2CI_2+\ldots+a_mCI_m}{a_1RI_1+a_2RI_2+\ldots+a_mRI_m}=\frac{\sum{a_iCI_I}}{\sum{a_iRI_i}}=\frac{CI}{RI}</script><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>至此介绍部分到此结束，下篇将会讲解实际用法，本文参考<a href="">https://zhuanlan.zhihu.com/p/448412538</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://LyQing63.github.io">灵檠</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://lyqing63.github.io/post/3f850a16.html">https://lyqing63.github.io/post/3f850a16.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://LyQing63.github.io" target="_blank">灵檠 | blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MCM-ICM/">MCM/ICM</a></div><div class="post_share"><div class="social-share" data-image="https://yjxx.oss-cn-nanjing.aliyuncs.com/img/202311222157854.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/post/b5e35360.html" title="算法学习(4):排序(一)"><img class="cover" src="https://yjxx.oss-cn-nanjing.aliyuncs.com/img/202311161322982.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">算法学习(4):排序(一)</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://q1.qlogo.cn/g?b=qq&amp;nk=1827304875&amp;s=100" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">灵檠</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archive/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/LyQing63"><i class="fab fa-github"></i><span>请狠狠踢我</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><p align="center"><img src="https://haiyong.site/img/img-blog.csdnimg.cn/f7384c88956d4378b72e47548e19c9f8.gif" width="50" alt="mao"></p> <p align="center">微信号：LyQing9673</p> <p align="center">QQ号：1827304875</p></div></div><div class="xpand" style="height:200px;"><canvas class="illo" width="800" height="800" style="max-width: 200px; max-height: 200px; touch-action: none; width: 640px; height: 640px;"></canvas></div><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople1.js"></script><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/zdog.dist.js"></script><script id="rendered-js" src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople.js"></script><style>.card-widget.card-announcement {
+margin: 0;
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+canvas {
+display: block;
+margin: 0 auto;
+cursor: move;
+}</style><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AHP%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">AHP模型的基本原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E5%92%8C%E5%88%A4%E6%96%AD%E7%9F%A9%E9%98%B5%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">2.1.</span> <span class="toc-text">层次结构和判断矩阵的概念</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AHP%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AE%9E%E6%96%BD%E6%AD%A5%E9%AA%A4"><span class="toc-number">3.</span> <span class="toc-text">AHP模型的实施步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95%E6%AD%A5%E9%AA%A4"><span class="toc-number">3.1.</span> <span class="toc-text">层次分析法步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.1.1.</span> <span class="toc-text">建立层次结构模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%88%A4%E6%96%AD%E7%9F%A9%E9%98%B5"><span class="toc-number">3.1.2.</span> <span class="toc-text">构造判断矩阵</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%82%E6%AC%A1%E5%8D%95%E6%8E%92%E5%BA%8F"><span class="toc-number">3.1.3.</span> <span class="toc-text">层次单排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B1%82%E8%A7%A3%E6%9C%80%E5%A4%A7%E7%89%B9%E5%BE%81%E6%A0%B9%E4%B8%8ECI%E5%80%BC"><span class="toc-number">3.1.4.</span> <span class="toc-text">求解最大特征根与CI值</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AECI%E3%80%81RI%E5%80%BC%E6%B1%82%E8%A7%A3CR%E5%80%BC%EF%BC%8C%E5%88%A4%E6%96%AD%E5%85%B6%E4%B8%80%E8%87%B4%E6%80%A7%E6%98%AF%E5%90%A6%E9%80%9A%E8%BF%87"><span class="toc-number">3.2.</span> <span class="toc-text">根据CI、RI值求解CR值，判断其一致性是否通过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%82%E6%AC%A1%E6%80%BB%E6%8E%92%E5%BA%8F%E4%B8%8E%E4%B8%80%E8%87%B4%E6%80%A7%E6%A3%80%E9%AA%8C"><span class="toc-number">3.3.</span> <span class="toc-text">层次总排序与一致性检验</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">4.</span> <span class="toc-text">结语</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/3f850a16.html" title="数学建模算法-层次分析模型(上)"><img src="https://yjxx.oss-cn-nanjing.aliyuncs.com/img/202311222157854.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数学建模算法-层次分析模型(上)"/></a><div class="content"><a class="title" href="/post/3f850a16.html" title="数学建模算法-层次分析模型(上)">数学建模算法-层次分析模型(上)</a><time datetime="2023-11-22T11:45:00.000Z" title="发表于 2023-11-22 19:45:00">2023-11-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/b5e35360.html" title="算法学习(4):排序(一)"><img src="https://yjxx.oss-cn-nanjing.aliyuncs.com/img/202311161322982.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="算法学习(4):排序(一)"/></a><div class="content"><a class="title" href="/post/b5e35360.html" title="算法学习(4):排序(一)">算法学习(4):排序(一)</a><time datetime="2023-11-16T06:00:00.000Z" title="发表于 2023-11-16 14:00:00">2023-11-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/d28cd0bd.html" title="算法学习(3):二分查找"><img src="https://yjxx.oss-cn-nanjing.aliyuncs.com/img/202311131510468.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="算法学习(3):二分查找"/></a><div class="content"><a class="title" href="/post/d28cd0bd.html" title="算法学习(3):二分查找">算法学习(3):二分查找</a><time datetime="2023-11-13T06:00:00.000Z" title="发表于 2023-11-13 14:00:00">2023-11-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/720d60c8.html" title="leetcode 题318:最大单词长度乘积"><img src="https://yjxx.oss-cn-nanjing.aliyuncs.com/img/202311061709867.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="leetcode 题318:最大单词长度乘积"/></a><div class="content"><a class="title" href="/post/720d60c8.html" title="leetcode 题318:最大单词长度乘积">leetcode 题318:最大单词长度乘积</a><time datetime="2023-11-06T05:20:00.000Z" title="发表于 2023-11-06 13:20:00">2023-11-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/f79c32e2.html" title="leetcode 题421:数组中两个数的最大异或值"><img src="https://yjxx.oss-cn-nanjing.aliyuncs.com/img/202311061652170.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="leetcode 题421:数组中两个数的最大异或值"/></a><div class="content"><a class="title" href="/post/f79c32e2.html" title="leetcode 题421:数组中两个数的最大异或值">leetcode 题421:数组中两个数的最大异或值</a><time datetime="2023-11-05T05:20:00.000Z" title="发表于 2023-11-05 13:20:00">2023-11-05</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://yjxx.oss-cn-nanjing.aliyuncs.com/img/202311222157854.png')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 灵檠</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="share" type="button" title="右键模式" onclick="changeMouseMode()"><i class="fas fa-mouse"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><button class="share" type="button" title="分享链接" onclick="share()"><i class="fas fa-share-nodes"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div class="js-pjax" id="rightMenu"><div class="rightMenu-group rightMenu-small"><a class="rightMenu-item" href="javascript:window.history.back();"><i class="fa fa-arrow-left"></i></a><a class="rightMenu-item" href="javascript:window.history.forward();"><i class="fa fa-arrow-right"></i></a><a class="rightMenu-item" href="javascript:window.location.reload();"><i class="fa fa-refresh"></i></a><a class="rightMenu-item" href="javascript:rmf.scrollToTop();"><i class="fa fa-arrow-up"></i></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-text"><a class="rightMenu-item" href="javascript:rmf.copySelect();"><i class="fa fa-copy"></i><span>复制</span></a><a class="rightMenu-item" href="javascript:window.open(&quot;https://www.baidu.com/s?wd=&quot;+window.getSelection().toString());window.location.reload();"><i class="fa fa-search"></i><span>百度搜索</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-too"><a class="rightMenu-item" href="javascript:window.open(window.getSelection().toString());window.location.reload();"><i class="fa fa-link"></i><span>转到链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-paste"><a class="rightMenu-item" href="javascript:rmf.paste()"><i class="fa fa-copy"></i><span>粘贴</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-post"><a class="rightMenu-item" href="#post-comment"><i class="fas fa-comment"></i><span>空降评论</span></a><a class="rightMenu-item" href="javascript:rmf.copyWordsLink()"><i class="fa fa-link"></i><span>复制本文地址</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-to"><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>新窗口打开</span></a><a class="rightMenu-item" id="menu-too" href="javascript:rmf.open()"><i class="fa fa-link"></i><span>转到链接</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-img"><a class="rightMenu-item" href="javascript:rmf.saveAs()"><i class="fa fa-download"></i><span>保存图片</span></a><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>在新窗口打开</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制图片链接</span></a></div><div class="rightMenu-group rightMenu-line"><a class="rightMenu-item" href="/moyu/"><i class="fa fa-gamepad"></i><span>休闲游戏</span></a><a class="rightMenu-item" target="_blank" rel="noopener" href="https://tools.haiyong.site"><i class="fa fa-tools"></i><span>实用工具</span></a><a class="rightMenu-item" href="javascript:switchNightMode();"><i class="fa fa-moon"></i><span>昼夜切换</span></a><a class="rightMenu-item" href="javascript:changeMouseMode();"><i class="fa fa-mouse"></i><span>切换鼠标右键</span></a><a class="rightMenu-item" href="javascript:rmf.fullScreen();"><i class="fas fa-expand"></i><span>切换全屏</span></a><a class="rightMenu-item" href="javascript:window.print();"><i class="fa-solid fa-print"></i><span>打印页面</span></a></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://lyqing-twikoo.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://lyqing-twikoo.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.textContent = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="1496089152" data-server="netease" data-type="song" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script type="text/javascript" src="https://cdn1.tianli0.top/npm/jquery@latest/dist/jquery.min.js"></script><script type="text/javascript" src="/js/rightmenu.js"></script><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = 'f1b78a9ab72b4400a687a54db977c299';
+  var gaud_map_key = 'd581d43bbd236c7839ef182a425e771c';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '118.80242,32.06465';
+  var clock_default_rectangle_enable = 'true';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><!-- hexo injector body_end end --></body></html>
